@@ -16,7 +16,7 @@
 </p>
 
 <p align="center">
-  <a href="https://dewdroplive.shop">🔗 Live Demo</a> ·
+ 
   <a href="#architecture--design-decisions">📐 Architecture</a> ·
   <a href="#installation--setup">⚙️ Setup Guide</a> ·
   <a href="#features">✨ Features</a>
