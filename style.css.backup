@@ -1,0 +1,2416 @@
+/*
+Theme Name: Antigravity
+Theme URI: https://github.com/hamzahossainX/Wordpress-Custome-Theme
+Author: Hamza Hossain
+Author URI: https://github.com/hamzahossainX
+Description: A custom WordPress theme built with the Antigravity framework, cloning WoodMart Minimalism design.
+Version: 1.0.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: antigravity
+Tags: custom-theme, minimalist, woodmart-clone, corporate
+*/
+
+/* ========================================
+   RESET & BASE STYLES
+======================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Lato', 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #242424;
+    background-color: #FFFFFF;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #777777;
+}
+
+/* ========================================
+   HOMEPAGE TITLE CLEANUP
+   Hide default WordPress titles on homepage
+======================================== */
+.home .entry-title,
+.home .post-title,
+.home .page-title,
+.home h1.entry-title,
+.home article h1 {
+    display: none !important;
+}
+
+/* Hide WordPress default content wrapper titles on homepage */
+.home .entry-header {
+    display: none !important;
+}
+
+
+/* ========================================
+   HEADER STYLES - WoodMart Minimalism Clone
+   Perfect Center Architecture
+======================================== */
+.site-header {
+    background-color: #FFFFFF;
+    border-bottom: 1px solid #ECECEC;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 15px 40px;
+    display: flex;
+    align-items: center;
+}
+
+/* ========================================
+   LEFT SECTION: Navigation Menu
+   flex: 1 ensures it takes equal space as right section
+======================================== */
+.header-left {
+    flex: 1;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.header-nav {
+    display: flex;
+    align-items: center;
+}
+
+.primary-menu {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+    margin: 0;
+    padding: 0;
+}
+
+.primary-menu li {
+    position: relative;
+}
+
+.primary-menu a {
+    font-size: 14px;
+    font-weight: 500;
+    color: #242424;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 5px 0;
+    display: block;
+    position: relative;
+}
+
+.primary-menu a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #000000;
+    transition: width 0.3s ease;
+}
+
+.primary-menu a:hover::after {
+    width: 100%;
+}
+
+.primary-menu a:hover {
+    color: #000000;
+}
+
+/* ========================================
+   CENTER SECTION: Brand Logo
+   Mathematically centered due to flex: 1 on both sides
+======================================== */
+.header-center {
+    flex: 0 0 auto;
+    text-align: center;
+}
+
+.logo-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 24px;
+    font-weight: 700;
+    color: #000000;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-family: 'Lato', sans-serif;
+}
+
+.logo-link:hover {
+    color: #242424;
+}
+
+.logo-icon {
+    font-size: 22px;
+    width: 22px;
+    height: 22px;
+}
+
+.logo-text {
+    font-weight: 700;
+}
+
+/* ========================================
+   RIGHT SECTION: User Tools
+   flex: 1 ensures it takes equal space as left section
+======================================== */
+.header-right {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.header-tools {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.tool-link {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: #242424;
+    font-size: 14px;
+    font-weight: 400;
+    transition: all 0.3s ease;
+}
+
+.tool-link:hover {
+    color: #000000;
+}
+
+.tool-link .dashicons {
+    font-size: 20px;
+    width: 20px;
+    height: 20px;
+}
+
+/* Login/Register Link */
+.login-link .tool-text {
+    font-size: 13px;
+    text-transform: capitalize;
+}
+
+/* Search, Wishlist, Cart Icons */
+.search-link,
+.wishlist-link,
+.cart-link {
+    position: relative;
+}
+
+/* Cart Price */
+.cart-price {
+    font-size: 13px;
+    font-weight: 600;
+    margin-left: 3px;
+}
+
+/* ========================================
+   RESPONSIVE DESIGN (Desktop First)
+======================================== */
+@media screen and (max-width: 1024px) {
+    .header-container {
+        padding: 15px 20px;
+    }
+
+    .primary-menu {
+        gap: 20px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+
+    /* Mobile menu will be implemented in future phase */
+    .header-nav {
+        display: none;
+    }
+
+    .header-tools {
+        flex: 0 0 auto;
+    }
+
+    .login-link .tool-text {
+        display: none;
+    }
+}
+
+/* ========================================
+   UTILITY CLASSES
+======================================== */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+.text-center {
+    text-align: center;
+}
+
+/* ========================================
+   WORDPRESS CORE CLASSES
+======================================== */
+.alignnone {
+    margin: 5px 20px 20px 0;
+}
+
+.aligncenter,
+div.aligncenter {
+    display: block;
+    margin: 5px auto 5px auto;
+}
+
+.alignright {
+    float: right;
+    margin: 5px 0 20px 20px;
+}
+
+.alignleft {
+    float: left;
+    margin: 5px 20px 20px 0;
+}
+
+.screen-reader-text {
+    clip: rect(1px, 1px, 1px, 1px);
+    position: absolute !important;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+}
+
+/* ========================================
+   CONTENT AREA STYLES
+======================================== */
+.content-area {
+    padding: 60px 0;
+    min-height: 60vh;
+}
+
+.site-main {
+    margin-bottom: 40px;
+}
+
+/* Entry/Post Styles */
+article {
+    margin-bottom: 60px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid #ECECEC;
+}
+
+article:last-child {
+    border-bottom: none;
+}
+
+.entry-header {
+    margin-bottom: 20px;
+}
+
+.entry-title {
+    font-size: 32px;
+    font-weight: 700;
+    color: #242424;
+    margin-bottom: 10px;
+    line-height: 1.3;
+}
+
+.entry-title a {
+    color: #242424;
+}
+
+.entry-title a:hover {
+    color: #000000;
+}
+
+.entry-meta {
+    font-size: 13px;
+    color: #777777;
+    margin-bottom: 20px;
+}
+
+.entry-meta span {
+    margin-right: 15px;
+}
+
+.post-thumbnail {
+    margin-bottom: 30px;
+}
+
+.post-thumbnail img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.entry-content {
+    font-size: 15px;
+    line-height: 1.8;
+    color: #242424;
+}
+
+.entry-content p {
+    margin-bottom: 20px;
+}
+
+.entry-content h1,
+.entry-content h2,
+.entry-content h3,
+.entry-content h4,
+.entry-content h5,
+.entry-content h6 {
+    margin-top: 30px;
+    margin-bottom: 15px;
+    font-weight: 700;
+    color: #242424;
+}
+
+/* Pagination */
+.pagination {
+    margin-top: 40px;
+    text-align: center;
+}
+
+.page-links {
+    margin-top: 20px;
+}
+
+/* No Results */
+.no-results {
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.page-header {
+    margin-bottom: 30px;
+}
+
+.page-title {
+    font-size: 28px;
+    font-weight: 700;
+    color: #242424;
+}
+
+/* ========================================
+   FOOTER STYLES
+======================================== */
+.site-footer {
+    background-color: #F8F8F8;
+    border-top: 1px solid #ECECEC;
+    padding: 40px 0;
+    margin-top: 60px;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+.footer-content {
+    text-align: center;
+    font-size: 14px;
+    color: #777777;
+}
+
+.footer-content p {
+    margin: 5px 0;
+}
+
+.footer-content a {
+    color: #242424;
+    font-weight: 500;
+}
+
+.footer-content a:hover {
+    color: #000000;
+}
+
+
+
+/* ========================================
+   HERO SLIDER STYLES - Full-Width Background (WoodMart Professional)
+======================================== */
+.hero-slider-section {
+    position: relative;
+    width: 100%;
+    height: 600px;
+    min-height: 600px;
+}
+
+.hero-swiper {
+    width: 100%;
+    height: 100%;
+}
+
+.swiper-slide {
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    position: relative;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center;
+    height: 600px;
+}
+
+/* Slide Overlay (Dark overlay for text readability) */
+.slide-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.3) 100%);
+    z-index: 1;
+}
+
+/* Slide Content Container */
+.slide-content {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 800px;
+    color: #FFFFFF;
+}
+
+/* Inner Content Wrapper for Perfect Centering */
+.hero-content-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    z-index: 10;
+    position: relative;
+}
+
+/* Headline Styling */
+.slide-headline {
+    font-size: 60px;
+    font-weight: 700;
+    line-height: 1.2;
+    color: #FFFFFF;
+    margin-bottom: 25px;
+    font-family: 'Lato', sans-serif;
+    text-shadow: 0 3px 15px rgba(0, 0, 0, 0.5);
+}
+
+/* Description Text */
+.slide-text {
+    font-size: 18px;
+    line-height: 1.8;
+    color: #FFFFFF;
+    margin-bottom: 35px;
+    font-weight: 300;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+.slide-text p {
+    margin-bottom: 15px;
+    color: #FFFFFF;
+}
+
+/* Button Styling (WoodMart Style: White BG, Black Text) */
+.slide-button {
+    display: inline-block;
+    padding: 15px 40px;
+    background-color: #FFFFFF;
+    color: #000000;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.slide-button:hover {
+    background-color: #000000;
+    color: #FFFFFF;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+}
+
+/* ========================================
+   ENTRANCE ANIMATIONS
+======================================== */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Apply animations only to active slide */
+.swiper-slide-active .animate-up {
+    animation: fadeInUp 0.8s ease forwards;
+}
+
+/* Stagger animation delays */
+.swiper-slide-active .slide-headline {
+    animation-delay: 0.2s;
+}
+
+.swiper-slide-active .slide-text {
+    animation-delay: 0.4s;
+}
+
+.swiper-slide-active .slide-button {
+    animation-delay: 0.6s;
+}
+
+/* Hide elements initially */
+.animate-up {
+    opacity: 0;
+}
+
+/* ========================================
+   SWIPER PAGINATION (WoodMart Professional Style)
+======================================== */
+
+/* Pagination Container */
+.swiper-pagination {
+    bottom: 30px !important;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Pagination Bullets (Dots) */
+.swiper-pagination-bullet {
+    width: 10px;
+    height: 10px;
+    background-color: rgba(0, 0, 0, 0.3);
+    opacity: 1;
+    transition: all 0.3s ease;
+    margin: 0 5px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+/* Hover Effect */
+.swiper-pagination-bullet:hover {
+    background-color: rgba(0, 0, 0, 0.5);
+    transform: scale(1.1);
+}
+
+/* Active Bullet (WoodMart Style: Expands to Line) */
+.swiper-pagination-bullet-active {
+    background-color: #000000;
+    width: 28px;
+    border-radius: 5px;
+}
+
+/* Dynamic Bullets - Scale Effect */
+.swiper-pagination-bullet-active-main {
+    background-color: #000000;
+}
+
+.swiper-pagination-bullet-active-prev,
+.swiper-pagination-bullet-active-next {
+    transform: scale(0.85);
+}
+
+.swiper-pagination-bullet-active-prev-prev,
+.swiper-pagination-bullet-active-next-next {
+    transform: scale(0.7);
+}
+
+
+/* ========================================
+   HERO SLIDER RESPONSIVE DESIGN
+======================================== */
+@media screen and (max-width: 1024px) {
+    .hero-slider-section {
+        height: 500px;
+        min-height: 500px;
+    }
+
+    .swiper-slide {
+        height: 500px;
+    }
+
+    .slide-headline {
+        font-size: 48px;
+    }
+
+    .slide-text {
+        font-size: 16px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .hero-slider-section {
+        height: 450px;
+        min-height: 450px;
+    }
+
+    .swiper-slide {
+        height: 450px;
+    }
+
+    .slide-content {
+        padding: 0 20px;
+    }
+
+    .slide-headline {
+        font-size: 32px;
+    }
+
+    .slide-text {
+        font-size: 15px;
+    }
+
+    .slide-button {
+        padding: 12px 30px;
+        font-size: 13px;
+    }
+}
+
+/* ========================================
+   MOBILE RESPONSIVE DESIGN (< 768px)
+======================================== */
+@media screen and (max-width: 767px) {
+
+    /* ========== HEADER & NAVIGATION ========== */
+
+    /* Hide desktop navigation */
+    .header-left {
+        display: none;
+    }
+
+    /* Hide desktop user tools */
+    .header-right {
+        display: none;
+    }
+
+    /* Adjust header container */
+    .header-container {
+        padding: 15px 20px;
+        justify-content: center;
+    }
+
+    /* Center logo on mobile */
+    .header-center {
+        margin: 0;
+    }
+
+    /* Mobile Menu Toggle (Hamburger Icon) */
+    .mobile-menu-toggle {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 30px;
+        height: 22px;
+        cursor: pointer;
+        position: absolute;
+        right: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 1001;
+    }
+
+    .mobile-menu-toggle span {
+        display: block;
+        width: 100%;
+        height: 3px;
+        background-color: #000000;
+        transition: all 0.3s ease;
+        border-radius: 2px;
+    }
+
+    /* Hamburger animation when menu is open */
+    .menu-open .mobile-menu-toggle span:nth-child(1) {
+        transform: rotate(45deg) translate(8px, 8px);
+    }
+
+    .menu-open .mobile-menu-toggle span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .menu-open .mobile-menu-toggle span:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -7px);
+    }
+
+    /* Mobile Navigation Overlay */
+    .menu-open .header-left {
+        display: block;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background-color: #FFFFFF;
+        z-index: 1000;
+        padding-top: 80px;
+        overflow-y: auto;
+    }
+
+    .menu-open .primary-menu {
+        flex-direction: column;
+        gap: 0;
+        text-align: center;
+    }
+
+    .menu-open .primary-menu li {
+        border-bottom: 1px solid #ECECEC;
+    }
+
+    .menu-open .primary-menu a {
+        padding: 20px;
+        font-size: 16px;
+        display: block;
+    }
+
+    /* Prevent body scroll when menu is open */
+    .menu-open {
+        overflow: hidden;
+    }
+
+    /* ========== HERO SLIDER MOBILE OPTIMIZATION ========== */
+
+    .hero-slider-section {
+        height: 400px !important;
+        min-height: 400px !important;
+    }
+
+    .swiper-slide {
+        height: 400px !important;
+    }
+
+    .slide-content {
+        padding: 0 20px;
+    }
+
+    /* Reduce title size for mobile */
+    .slide-headline {
+        font-size: 28px !important;
+        margin-bottom: 15px;
+        line-height: 1.3;
+    }
+
+    .slide-text {
+        font-size: 14px !important;
+        margin-bottom: 20px;
+    }
+
+    .slide-button {
+        padding: 12px 30px !important;
+        font-size: 12px !important;
+    }
+
+    /* Pagination dots adjustment */
+    .swiper-pagination {
+        bottom: 20px !important;
+    }
+
+    .swiper-pagination-bullet {
+        width: 6px !important;
+        height: 6px !important;
+        margin: 0 4px !important;
+    }
+
+    .swiper-pagination-bullet-active {
+        width: 18px !important;
+    }
+
+    /* ========== FOOTER ========== */
+
+    .footer-container {
+        padding: 0 20px;
+    }
+
+    .footer-content {
+        font-size: 12px;
+    }
+}
+
+/* Hide mobile toggle on desktop */
+@media screen and (min-width: 768px) {
+    .mobile-menu-toggle {
+        display: none;
+    }
+}
+
+/* ========================================
+   TABLET RESPONSIVE DESIGN (768px - 1024px)
+======================================== */
+@media screen and (max-width: 1024px) and (min-width: 768px) {
+
+    /* ========== HEADER OPTIMIZATION ========== */
+
+    .site-header {
+        padding: 10px 20px;
+    }
+
+    /* Reduce header container padding */
+    .header-container {
+        padding: 10px 20px;
+    }
+
+    /* Reduce menu font size to prevent overflow */
+    .primary-menu a {
+        font-size: 12px;
+        letter-spacing: 0.3px;
+    }
+
+    .primary-menu {
+        gap: 20px;
+    }
+
+    /* Hide login text, keep icon only */
+    .tool-text {
+        display: none;
+    }
+
+    /* Adjust logo size */
+    .logo-text {
+        font-size: 20px;
+    }
+
+    .logo-icon {
+        font-size: 20px;
+    }
+
+    /* ========== HERO SLIDER TABLET OPTIMIZATION ========== */
+
+    .hero-slider-section {
+        height: 500px;
+        min-height: 500px;
+    }
+
+    .swiper-slide {
+        height: 500px;
+    }
+
+    .slide-headline {
+        font-size: 40px;
+    }
+
+    .slide-text {
+        font-size: 16px;
+    }
+
+    .slide-button {
+        padding: 15px 35px;
+        font-size: 13px;
+    }
+}
+
+/* ========================================
+   TABLET WITH MOBILE MENU (< 1024px)
+   Switch to hamburger menu earlier for iPads
+======================================== */
+@media screen and (max-width: 1023px) {
+
+    /* Hide desktop navigation */
+    .header-left {
+        display: none;
+    }
+
+    /* Hide desktop user tools */
+    .header-right {
+        display: none;
+    }
+
+    /* Show mobile toggle */
+    .mobile-menu-toggle {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 30px;
+        height: 22px;
+        cursor: pointer;
+        position: absolute;
+        right: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 1001;
+    }
+
+    .mobile-menu-toggle span {
+        display: block;
+        width: 100%;
+        height: 3px;
+        background-color: #000000;
+        transition: all 0.3s ease;
+        border-radius: 2px;
+    }
+
+    /* Hamburger animation when menu is open */
+    .menu-open .mobile-menu-toggle span:nth-child(1) {
+        transform: rotate(45deg) translate(8px, 8px);
+    }
+
+    .menu-open .mobile-menu-toggle span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .menu-open .mobile-menu-toggle span:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -7px);
+    }
+
+    /* Mobile Navigation Overlay */
+    .menu-open .header-left {
+        display: block;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background-color: #FFFFFF;
+        z-index: 1000;
+        padding-top: 80px;
+        overflow-y: auto;
+    }
+
+    .menu-open .primary-menu {
+        flex-direction: column;
+        gap: 0;
+        text-align: center;
+    }
+
+    .menu-open .primary-menu li {
+        border-bottom: 1px solid #ECECEC;
+    }
+
+    .menu-open .primary-menu a {
+        padding: 20px;
+        font-size: 18px;
+        display: block;
+    }
+
+    /* Prevent body scroll when menu is open */
+    .menu-open {
+        overflow: hidden;
+    }
+
+    /* Center logo on tablet */
+    .header-container {
+        justify-content: center;
+    }
+}
+
+/* ========================================
+   CATEGORY PROMO GRID SECTION (WoodMart Style)
+======================================== */
+
+/* ========================================
+   CATEGORY GRID SECTION - WoodMart Minimalist Style
+   Wide Rectangle Boxes with Right-Aligned Product Images
+======================================== */
+.category-grid-section {
+    background-color: #FFFFFF;
+}
+
+.category-grid-section .container {
+    width: 100%;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding-left: 15px;
+    padding-right: 15px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+/* Individual Category Banner Item - Wide Rectangle */
+.category-banner-item {
+    position: relative;
+    height: 280px;
+    background-color: #f9f9f9;
+    background-size: contain;
+    background-position: right bottom;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.category-banner-item:hover {
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Category Content - Restricted to Left Side */
+.category-content {
+    width: 55%;
+    padding-left: 30px;
+    z-index: 2;
+    position: relative;
+}
+
+/* Subtitle (Small Text Above Title) */
+.category-subtitle {
+    font-size: 12px;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #888;
+    margin: 0 0 8px 0;
+}
+
+/* Main Title */
+.category-title {
+    font-size: 22px;
+    font-weight: 600;
+    color: #333;
+    margin: 0 0 15px 0;
+    line-height: 1.3;
+}
+
+/* Read More Link */
+.category-link {
+    display: inline-block;
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #333;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.category-link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #000;
+    transition: width 0.3s ease;
+}
+
+.category-link:hover {
+    color: #000;
+}
+
+.category-link:hover::after {
+    width: 100%;
+}
+
+/* ========================================
+   CATEGORY GRID RESPONSIVE DESIGN
+======================================== */
+
+/* Tablet (768px - 1024px): 2 Columns */
+@media screen and (max-width: 1024px) {
+    .category-grid-section .container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .category-banner-item {
+        height: 240px;
+        background-size: contain;
+    }
+
+    .category-content {
+        width: 60%;
+        padding-left: 25px;
+    }
+
+    .category-title {
+        font-size: 20px;
+    }
+}
+
+/* Mobile (< 768px): 1 Column */
+@media screen and (max-width: 767px) {
+    .category-grid-section .container {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    .category-banner-item {
+        height: 220px;
+        background-size: contain;
+    }
+
+    .category-content {
+        width: 65%;
+        padding-left: 20px;
+    }
+
+    .category-subtitle {
+        font-size: 11px;
+    }
+
+    .category-title {
+        font-size: 18px;
+        margin-bottom: 12px;
+    }
+
+    .category-link {
+        font-size: 12px;
+    }
+}
+
+/* ========================================
+
+
+.featured-products-section {
+    background-color: #FFFFFF;
+    padding: 60px 0;
+}
+
+.featured-products-section .container {
+    width: 100%;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+
+.section-title {
+    font-size: 28px;
+    font-weight: 600;
+    color: #333;
+    margin: 0 0 40px 0;
+    text-align: left;
+    letter-spacing: 0.5px;
+}
+
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+}
+
+
+.product-card {
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+}
+
+.product-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+}
+
+
+.product-image-wrapper {
+    position: relative;
+    background-color: #f9f9f9;
+    padding: 20px;
+    overflow: hidden;
+    aspect-ratio: 1 / 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.product-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: transform 0.4s ease;
+}
+
+.product-card:hover .product-image {
+    transform: scale(1.05);
+}
+
+
+.product-image-placeholder {
+    width: 100%;
+    height: 100%;
+    background-color: #e9e9e9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #999;
+    font-size: 12px;
+}
+
+
+.product-info {
+    padding-top: 15px;
+    text-align: left;
+}
+
+
+.product-category {
+    font-size: 12px;
+    color: #999;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin: 0 0 8px 0;
+}
+
+
+.product-title {
+    font-size: 14px;
+    font-weight: 400;
+    color: #333;
+    margin: 0 0 10px 0;
+    line-height: 1.4;
+    transition: color 0.3s ease;
+}
+
+.product-link:hover .product-title {
+    color: #000;
+}
+
+
+.product-price {
+    font-size: 14px;
+    font-weight: 600;
+    color: #83b735;
+    margin: 0;
+}
+
+.product-price .woocommerce-Price-amount {
+    color: #83b735;
+    font-weight: 600;
+}
+
+.product-price del {
+    color: #999;
+    font-weight: 400;
+    margin-right: 8px;
+}
+
+.product-price ins {
+    text-decoration: none;
+    color: #83b735;
+}
+
+
+@media screen and (max-width: 1024px) {
+    .featured-products-section {
+        padding: 50px 0;
+    }
+
+    .featured-products-section .container {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .section-title {
+        font-size: 24px;
+        margin-bottom: 30px;
+    }
+
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .featured-products-section {
+        padding: 40px 0;
+    }
+
+    .featured-products-section .container {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    .section-title {
+        font-size: 22px;
+        margin-bottom: 25px;
+    }
+
+    .product-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .product-image-wrapper {
+        padding: 15px;
+    }
+
+    .product-title {
+        font-size: 13px;
+    }
+
+    .product-category {
+        font-size: 11px;
+    }
+
+    .product-price {
+        font-size: 13px;
+    }
+}
+
+
+
+.home .featured-products-section ul.products,
+.home .woocommerce ul.products,
+.home ul.products {
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.home .featured-products-section ul.products li.product,
+.home .woocommerce ul.products li.product,
+.home ul.products li.product {
+    width: 100% !important;
+    margin-bottom: 0 !important;
+    float: none !important;
+}
+
+.home ul.products li.product {
+    text-align: center;
+}
+
+.home ul.products li.product .woocommerce-loop-product__link {
+    display: block;
+    text-decoration: none;
+}
+
+.home ul.products li.product img {
+    width: 100%;
+    height: auto;
+    background-color: #f9f9f9;
+    padding: 20px;
+    box-sizing: border-box;
+    transition: transform 0.4s ease;
+}
+
+.home ul.products li.product:hover img {
+    transform: scale(1.05);
+}
+
+.home ul.products li.product .woocommerce-loop-product__title,
+.home ul.products li.product h2,
+.home ul.products li.product h3 {
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    color: #333 !important;
+    margin: 15px 0 10px 0 !important;
+    line-height: 1.4;
+    text-align: center;
+}
+
+.home ul.products li.product:hover .woocommerce-loop-product__title,
+.home ul.products li.product:hover h2,
+.home ul.products li.product:hover h3 {
+    color: #000 !important;
+}
+
+.home ul.products li.product .price {
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    color: #83b735 !important;
+    text-align: center;
+    margin: 0;
+}
+
+.home ul.products li.product .price .woocommerce-Price-amount,
+.home ul.products li.product .price ins .woocommerce-Price-amount {
+    color: #83b735 !important;
+    font-weight: 600 !important;
+}
+
+.home ul.products li.product .price del {
+    color: #999 !important;
+    font-weight: 400 !important;
+    margin-right: 8px;
+}
+
+.home ul.products li.product .price ins {
+    text-decoration: none;
+    background: none;
+}
+
+.home ul.products li.product .button {
+    margin-top: 10px;
+    background-color: #83b735;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    font-size: 13px;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+}
+
+.home ul.products li.product .button:hover {
+    background-color: #6fa028;
+}
+
+
+
+@media screen and (max-width: 1024px) {
+    .home .featured-products-section ul.products,
+    .home .woocommerce ul.products,
+    .home ul.products {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 20px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .home .featured-products-section ul.products,
+    .home .woocommerce ul.products,
+    .home ul.products {
+        grid-template-columns: repeat(1, 1fr) !important;
+        gap: 20px;
+    }
+
+    .home ul.products li.product img {
+        padding: 15px;
+    }
+}
+
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+.woocommerce ul.products li.product,
+.home ul.products li.product {
+    font-family: 'Inter', 'Lato', sans-serif !important;
+}
+
+
+.woocommerce ul.products li.product img,
+.home ul.products li.product img {
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    width: 100%;
+    height: auto;
+}
+
+
+.woocommerce ul.products li.product .woocommerce-loop-product__title,
+.woocommerce ul.products li.product h2,
+.woocommerce ul.products li.product h3 {
+    font-family: 'Inter', sans-serif !important;
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    color: #2d2a2a !important;
+}
+
+.woocommerce ul.products li.product .price,
+.home ul.products li.product .price {
+    font-size: 15px !important;
+    font-weight: bold !important;
+    color: #83b735 !important;
+}
+
+.woocommerce ul.products li.product .onsale,
+.home ul.products li.product .onsale {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: #83b735 !important;
+    color: #ffffff !important;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    z-index: 10;
+    margin: 0;
+    padding: 0;
+    line-height: 1;
+}
+
+.woocommerce ul.products li.product .button,
+.home ul.products li.product .button {
+    transition: all 0.3s ease;
+}
+
+.woocommerce ul.products li.product:hover .button,
+.home ul.products li.product:hover .button {
+    background-color: #000000 !important;
+    color: #ffffff !important;
+}
+
+.woocommerce ul.products li.product,
+.home ul.products li.product {
+    position: relative;
+}
+
+.woocommerce ul.products {
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.woocommerce ul.products li.product {
+    width: 100% !important;
+    margin-bottom: 0 !important;
+    float: none !important;
+    text-align: center;
+}
+
+@media screen and (max-width: 1024px) {
+    .woocommerce ul.products {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 20px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .woocommerce ul.products {
+        grid-template-columns: repeat(1, 1fr) !important;
+        gap: 20px;
+    }
+}
+
+
+.home .woocommerce ul.products,
+.home .featured-products-section ul.products,
+.woocommerce.columns-4 ul.products,
+body.home ul.products {
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 30px !important;
+    margin-bottom: 50px;
+    list-style: none !important;
+    padding: 0 !important;
+}
+
+.home .woocommerce ul.products li.product,
+.home .featured-products-section ul.products li.product,
+body.home ul.products li.product {
+    width: 100% !important;
+    float: none !important;
+    margin: 0 !important;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.home ul.products li.product a.woocommerce-LoopProduct-link,
+.home ul.products li.product .woocommerce-loop-product__link {
+    position: relative;
+    display: block;
+}
+
+.home ul.products li.product .button,
+.home ul.products li.product .add_to_cart_button,
+.home ul.products li.product .product_type_simple,
+.home ul.products li.product .ajax_add_to_cart {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    opacity: 0;
+    background-color: #000000 !important;
+    color: #ffffff !important;
+    padding: 12px 30px;
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    z-index: 10;
+    width: auto;
+    min-width: 150px;
+    text-align: center;
+}
+
+.home ul.products li.product:hover .button,
+.home ul.products li.product:hover .add_to_cart_button,
+.home ul.products li.product:hover .product_type_simple,
+.home ul.products li.product:hover .ajax_add_to_cart {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+.home ul.products li.product .button:hover,
+.home ul.products li.product .add_to_cart_button:hover {
+    background-color: #83b735 !important;
+    color: #ffffff !important;
+}
+
+.home ul.products li.product .attachment-woocommerce_thumbnail,
+.home ul.products li.product img {
+    position: relative;
+}
+
+.home ul.products li.product .woocommerce-loop-product__title,
+.home ul.products li.product .price {
+    position: relative;
+    z-index: 1;
+}
+
+
+    .home .woocommerce ul.products,
+    .home .featured-products-section ul.products,
+    body.home ul.products {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 20px !important;
+    }
+}
+
+/* Mobile (< 768px): 1 Column 
+@media screen and (max-width: 767px) {
+    .home .woocommerce ul.products,
+    .home .featured-products-section ul.products,
+    body.home ul.products {
+        grid-template-columns: repeat(1, 1fr) !important;
+        gap: 20px !important;
+    }
+    
+    /* Show button by default on mobile (no hover) 
+    .home ul.products li.product .button,
+    .home ul.products li.product .add_to_cart_button {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+        position: static;
+        transform: none;
+        margin-top: 15px;
+        width: 100%;
+    }
+}
+
+/* ========================================
+   CATEGORY BANNER SECTION - ISOLATION & RESTORATION
+   High-Specificity Override to Prevent Conflicts
+======================================== 
+
+/* Force 3-Column Grid for Category Banners 
+section.category-grid-section .container,
+.category-grid-section > .container {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 30px !important;
+    width: 100% !important;
+    max-width: 1200px !important;
+    margin: 30px auto !important;
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+}
+
+/* Category Banner Item - Fixed Professional Height 
+.category-grid-section .category-banner-item,
+section.category-grid-section .category-banner-item {
+    height: 280px !important;
+    display: flex !important;
+    align-items: center !important;
+    position: relative !important;
+    background-size: contain !important;
+    background-position: right bottom !important;
+    background-repeat: no-repeat !important;
+    background-color: #f9f9f9 !important;
+    overflow: hidden !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+}
+
+/* Category Content - Left Side Only (50% Width) 
+.category-grid-section .category-content,
+section.category-grid-section .category-content {
+    width: 50% !important;
+    padding-left: 30px !important;
+    z-index: 2 !important;
+    position: relative !important;
+}
+
+/* Category Banner Hover Effect 
+.category-grid-section .category-banner-item:hover,
+section.category-grid-section .category-banner-item:hover {
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Responsive: Tablet (2 Columns) 
+@media screen and (max-width: 1024px) {
+    section.category-grid-section .container,
+    .category-grid-section > .container {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 20px !important;
+    }
+    
+    .category-grid-section .category-banner-item {
+        height: 240px !important;
+    }
+    
+    .category-grid-section .category-content {
+        width: 55% !important;
+    }
+}
+
+/* Responsive: Mobile (1 Column) 
+@media screen and (max-width: 767px) {
+    section.category-grid-section .container,
+    .category-grid-section > .container {
+        grid-template-columns: repeat(1, 1fr) !important;
+        gap: 15px !important;
+        margin: 20px auto !important;
+    }
+    
+    .category-grid-section .category-banner-item {
+        height: 220px !important;
+    }
+    
+    .category-grid-section .category-content {
+        width: 60% !important;
+        padding-left: 20px !important;
+    }
+}
+
+/* ========================================
+   CATEGORY BANNER SECTION - FINAL FIX
+   Targeting the Correct Grid Container (.category-grid)
+======================================== 
+
+/* Target the actual grid wrapper inside container 
+.category-grid-section .category-grid,
+section.category-grid-section .category-grid {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 30px !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    list-style: none !important;
+}
+
+/* Ensure container has proper width constraints 
+.category-grid-section .container {
+    width: 100% !important;
+    max-width: 1200px !important;
+    margin: 30px auto !important;
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+}
+
+/* Category Banner Items inside .category-grid 
+.category-grid-section .category-grid .category-banner-item {
+    height: 280px !important;
+    display: flex !important;
+    align-items: center !important;
+    position: relative !important;
+    background-size: contain !important;
+    background-position: right bottom !important;
+    background-repeat: no-repeat !important;
+    background-color: #f9f9f9 !important;
+    overflow: hidden !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    width: 100% !important;
+    margin: 0 !important;
+}
+
+/* Banner Content (Text on Left - 50% Width) 
+.category-grid-section .category-grid .banner-content {
+    width: 50% !important;
+    padding-left: 30px !important;
+    z-index: 2 !important;
+    position: relative !important;
+}
+
+/* Responsive: Tablet 
+@media screen and (max-width: 1024px) {
+    .category-grid-section .category-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 20px !important;
+    }
+    
+    .category-grid-section .category-grid .category-banner-item {
+        height: 240px !important;
+    }
+}
+
+/* Responsive: Mobile 
+@media screen and (max-width: 767px) {
+    .category-grid-section .category-grid {
+        grid-template-columns: repeat(1, 1fr) !important;
+        gap: 15px !important;
+    }
+    
+    .category-grid-section .category-grid .category-banner-item {
+        height: 220px !important;
+    }
+    
+    .category-grid-section .category-grid .banner-content {
+        width: 60% !important;
+        padding-left: 20px !important;
+    }
+}
+
+/* ========================================
+   CATEGORY BANNER SECTION - EMERGENCY RESTORATION
+   Maximum Priority Override - 3-Column Grid
+======================================== */
+
+/* Force 3-Column Grid Layout - All Possible Selectors 
+.category-grid-section .container,
+.category-grid-section .category-grid,
+.category-grid-wrapper,
+section.category-grid-section > .container,
+section.category-grid-section .container > .category-grid {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 30px !important;
+    width: 100% !important;
+    max-width: 1200px !important;
+    margin: 50px auto !important;
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+}
+
+/* Category Banner Item - Fixed Box Shape 
+.category-grid-section .category-banner-item,
+.category-grid .category-banner-item,
+section.category-grid-section .category-banner-item {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    height: 300px !important;
+    width: 100% !important;
+    background-size: cover !important;
+    background-position: center !important;
+    position: relative !important;
+    overflow: hidden !important;
+    margin: 0 !important;
+    float: none !important;
+}
+
+/* Banner Content - Vertically Centered 
+.category-grid-section .banner-content,
+.category-banner-item .banner-content {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: flex-start !important;
+    padding: 30px !important;
+    height: 100% !important;
+    position: relative !important;
+    z-index: 3 !important;
+}
+
+/* Banner Overlay for Text Readability 
+.category-grid-section .banner-overlay,
+.category-banner-item .banner-overlay {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.2) 100%) !important;
+    z-index: 2 !important;
+}
+
+/* Typography - Ensure Readability 
+.category-grid-section .banner-title,
+.category-banner-item .banner-title {
+    color: #FFFFFF !important;
+    font-size: 24px !important;
+    font-weight: 700 !important;
+    margin-bottom: 20px !important;
+}
+
+.category-grid-section .banner-subtitle,
+.category-banner-item .banner-subtitle {
+    color: rgba(255, 255, 255, 0.9) !important;
+    font-size: 12px !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1.5px !important;
+    margin-bottom: 10px !important;
+}
+
+/* ========================================
+   RESPONSIVE GRID LAYOUT
+======================================== 
+
+/* Tablet (768px - 1024px): 2 Columns 
+@media screen and (max-width: 1024px) {
+    .category-grid-section .container,
+    .category-grid-section .category-grid,
+    .category-grid-wrapper {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 20px !important;
+        margin: 40px auto !important;
+    }
+    
+    .category-grid-section .category-banner-item {
+        height: 280px !important;
+    }
+}
+
+/* Mobile (< 768px): 1 Column 
+@media screen and (max-width: 767px) {
+    .category-grid-section .container,
+    .category-grid-section .category-grid,
+    .category-grid-wrapper {
+        grid-template-columns: 1fr !important;
+        gap: 15px !important;
+        margin: 30px auto !important;
+    }
+    
+    .category-grid-section .category-banner-item {
+        height: 250px !important;
+    }
+    
+    .category-grid-section .banner-content {
+        padding: 20px !important;
+    }
+}
+
+/* ========================================
+   CATEGORY BANNER HARD RESET - FINAL FIX
+   Nuclear Option: Override Everything
+======================================== */
+
+/* Step 1: Reset Container to Full Width 
+.category-grid-section {
+    width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.category-grid-section .container {
+    width: 100% !important;
+    max-width: 1200px !important;
+    margin: 50px auto !important;
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+    display: block !important;
+}
+
+/* Step 2: Force Grid on .category-grid 
+.category-grid-section .container .category-grid {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 30px !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    list-style: none !important;
+}
+
+/* Step 3: Force Items to Fill Grid Cells 
+.category-grid-section .category-grid .category-banner-item {
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    height: 280px !important;
+    min-height: 280px !important;
+    max-height: 280px !important;
+    display: block !important;
+    position: relative !important;
+    overflow: hidden !important;
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    float: none !important;
+    flex: none !important;
+}
+
+/* Step 4: Fix Content Positioning 
+.category-grid-section .category-grid .category-banner-item .banner-content,
+.category-grid-section .category-grid .category-banner-item .category-content {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: flex-start !important;
+    padding: 30px !important;
+    z-index: 3 !important;
+}
+
+/* Step 5: Ensure Overlay Doesn't Break Layout 
+.category-grid-section .category-grid .category-banner-item .banner-overlay {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    z-index: 2 !important;
+}
+
+/* Responsive: Tablet 
+@media screen and (max-width: 1024px) {
+    .category-grid-section .container .category-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 20px !important;
+    }
+    
+    .category-grid-section .category-grid .category-banner-item {
+        height: 240px !important;
+        min-height: 240px !important;
+        max-height: 240px !important;
+    }
+}
+
+/* Responsive: Mobile 
+@media screen and (max-width: 767px) {
+    .category-grid-section .container .category-grid {
+        grid-template-columns: 1fr !important;
+        gap: 15px !important;
+    }
+    
+    .category-grid-section .category-grid .category-banner-item {
+        height: 220px !important;
+        min-height: 220px !important;
+        max-height: 220px !important;
+    }
+    
+    .category-grid-section .category-grid .category-banner-item .banner-content {
+        padding: 20px !important;
+    }
+}
+
+/* ========================================
+   CATEGORY BANNER - ULTRA AGGRESSIVE FIX
+   Maximum Specificity Override
+======================================== */
+
+/* FORCE GRID LAYOUT - Maximum Priority 
+body.home section.category-grid-section .container,
+body section.category-grid-section .container,
+section.category-grid-section > .container,
+.category-grid-section .container,
+.category-grid-wrapper {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 30px !important;
+    width: 100% !important;
+    max-width: 1200px !important;
+    margin: 40px auto !important;
+    padding: 0 15px !important;
+    box-sizing: border-box !important;
+}
+
+/* FORCE BOX SHAPE - Ultra Specific Selector 
+body.home section.category-grid-section .category-banner-item,
+body section.category-grid-section .category-banner-item,
+section.category-grid-section .category-banner-item,
+.category-grid-section .category-banner-item,
+.category-banner-item {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: flex-start !important;
+    width: 100% !important;
+    min-width: 100% !important;
+    max-width: 100% !important;
+    height: 280px !important;
+    min-height: 280px !important;
+    max-height: 280px !important;
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border-radius: 8px !important;
+    overflow: hidden !important;
+    position: relative !important;
+    box-sizing: border-box !important;
+    float: none !important;
+    flex: none !important;
+}
+
+/* FORCE CONTENT POSITIONING 
+body section.category-grid-section .category-banner-item .banner-content,
+section.category-grid-section .category-banner-item .banner-content,
+.category-banner-item .banner-content {
+    position: relative !important;
+    z-index: 3 !important;
+    padding: 30px !important;
+    width: 100% !important;
+    height: auto !important;
+    box-sizing: border-box !important;
+}
+
+/* FORCE OVERLAY 
+body section.category-grid-section .category-banner-item .banner-overlay,
+section.category-grid-section .category-banner-item .banner-overlay,
+.category-banner-item .banner-overlay {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.2) 100%) !important;
+    z-index: 2 !important;
+}
+
+/* ========================================
+   RESPONSIVE - ULTRA AGGRESSIVE
+======================================== */
+
+/* Tablet (768px - 1024px): 2 Columns 
+@media screen and (max-width: 1024px) {
+    body.home section.category-grid-section .container,
+    body section.category-grid-section .container,
+    section.category-grid-section > .container,
+    .category-grid-section .container,
+    .category-grid-wrapper {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 20px !important;
+    }
+    
+    body.home section.category-grid-section .category-banner-item,
+    body section.category-grid-section .category-banner-item,
+    .category-banner-item {
+        height: 240px !important;
+        min-height: 240px !important;
+        max-height: 240px !important;
+    }
+}
+
+/* Mobile (< 768px): 1 Column 
+@media screen and (max-width: 767px) {
+    body.home section.category-grid-section .container,
+    body section.category-grid-section .container,
+    section.category-grid-section > .container,
+    .category-grid-section .container,
+    .category-grid-wrapper {
+        grid-template-columns: 1fr !important;
+        gap: 15px !important;
+        margin: 30px auto !important;
+    }
+    
+    body.home section.category-grid-section .category-banner-item,
+    body section.category-grid-section .category-banner-item,
+    .category-banner-item {
+        height: 220px !important;
+        min-height: 220px !important;
+        max-height: 220px !important;
+    }
+    
+    .category-banner-item .banner-content {
+        padding: 20px !important;
+    }
+}
+
+/* ========================================
+   CATEGORY BANNER SECTION - FINAL COMPREHENSIVE FIX
+   WoodMart Minimalism Design Replication
+   Wide Rectangle "Credit Card" Layout
+======================================== */
+
+/* RESET: Clear all conflicting styles 
+.category-grid-section * {
+    box-sizing: border-box;
+}
+
+/* CONTAINER: Full-width wrapper with constraints 
+.category-grid-section {
+    width: 100%;
+    padding: 50px 0;
+    background-color: #FFFFFF;
+}
+
+/* GRID WRAPPER: Force 3-column layout 
+.category-grid-section .container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.category-grid-section .container .category-grid,
+.category-grid-section .category-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+/* CATEGORY BANNER ITEM: Wide Rectangle Shape 
+.category-grid-section .category-banner-item {
+    /* Dimensions: Credit Card Aspect Ratio 
+    width: 100%;
+    height: 260px;
+    min-height: 260px;
+    
+    /* Layout 
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    
+    /* Background 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: #f5f5f5;
+    
+    /* Reset conflicting properties 
+    margin: 0;
+    padding: 0;
+    float: none;
+    flex: none;
+    
+    /* Polish 
+    border-radius: 4px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.category-grid-section .category-banner-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+/* BANNER OVERLAY: Dark gradient for text readability 
+.category-grid-section .banner-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.2) 100%);
+    z-index: 1;
+}
+/* BANNER CONTENT: Text positioned left, vertically centered 
+.category-grid-section .banner-content {
+    position: relative;
+    z-index: 2;
+    padding: 30px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+/* Typography 
+.category-grid-section .banner-subtitle {
+    font-size: 11px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: rgba(255, 255, 255, 0.85);
+    margin: 0 0 8px 0;
+}
+
+.category-grid-section .banner-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: #FFFFFF;
+    margin: 0 0 18px 0;
+    line-height: 1.3;
+}
+
+.category-grid-section .banner-button {
+    display: inline-block;
+    padding: 10px 24px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #FFFFFF;
+    background-color: transparent;
+    border: 2px solid #FFFFFF;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.category-grid-section .banner-button:hover {
+    background-color: #FFFFFF;
+    color: #000000;
+}
+
+/* ========================================
+   RESPONSIVE BREAKPOINTS
+======================================== */
+
+/* Tablet: 2 Columns 
+@media screen and (max-width: 1024px) {
+    .category-grid-section .container .category-grid,
+    .category-grid-section .category-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+    
+    .category-grid-section .category-banner-item {
+        height: 240px;
+        min-height: 240px;
+    }
+}
+
+/* Mobile: 1 Column 
+@media screen and (max-width: 767px) {
+    .category-grid-section {
+        padding: 30px 0;
+    }
+    
+    .category-grid-section .container .category-grid,
+    .category-grid-section .category-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .category-grid-section .category-banner-item {
+        height: 220px;
+        min-height: 220px;
+    }
+    
+    .category-grid-section .banner-content {
+        padding: 20px;
+    }
+    
+    .category-grid-section .banner-title {
+        font-size: 18px;
+    }
+}

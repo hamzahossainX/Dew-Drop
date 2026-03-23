@@ -1,0 +1,6528 @@
+/*
+Theme Name: Antigravity
+Theme URI: http://localhost/amira
+Author: Ismail Hossen
+Author URI: https://github.com/hamzahossainX
+Description: Custom minimal luxury WooCommerce theme
+Version: 1.0
+Requires at least: 5.0
+Tested up to: 6.4
+WooCommerce: 3.0+
+License: GNU General Public License v2
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: antigravity
+Tags: custom-theme, minimalist, woodmart-clone, corporate
+*/
+
+/* ========================================
+   GOOGLE FONTS — Cormorant Garamond (headings) + Inter (body)
+======================================== */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* ========================================
+   RESET & BASE STYLES
+======================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    color: #242424;
+    background-color: #FFFFFF;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+}
+
+h1 {
+    font-size: 3rem;
+}
+
+h2 {
+    font-size: 2.2rem;
+}
+
+h3 {
+    font-size: 1.5rem;
+}
+
+h4 {
+    font-size: 1.2rem;
+}
+
+/* Uppercase Labels Letter Spacing */
+label,
+th,
+button,
+.button,
+.btn,
+.uppercase-label {
+    letter-spacing: 0.1em;
+}
+
+/* ========================================
+   WOOCOMMERCE & THEME FONT OVERRIDES
+======================================== */
+.navbar,
+.footer,
+.product-card,
+.product-grid,
+.hero-section,
+.banner-section,
+button,
+.button,
+.btn,
+.price,
+.woocommerce-Price-amount,
+.amount,
+input,
+textarea,
+select,
+.woocommerce div.product .product_title,
+.woocommerce ul.products li.product .woocommerce-loop-product__title,
+.woocommerce div.product p.price,
+.woocommerce div.product span.price,
+.woocommerce form .form-row label,
+.woocommerce a.button,
+.woocommerce button.button,
+.woocommerce input.button {
+    font-family: 'Inter', sans-serif !important;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #777777;
+}
+
+/* ========================================
+   HOMEPAGE TITLE CLEANUP
+   Hide default WordPress titles on homepage
+======================================== */
+.home .entry-title,
+.home .post-title,
+.home .page-title,
+.home h1.entry-title,
+.home article h1 {
+    display: none !important;
+}
+
+/* Hide WordPress default content wrapper titles on homepage */
+.home .entry-header {
+    display: none !important;
+}
+
+
+/* ========================================
+   HEADER STYLES - WoodMart Minimalism Clone
+   Perfect Center Architecture
+======================================== */
+.site-header {
+    background-color: #FFFFFF;
+    border-bottom: 1px solid #ECECEC;
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 15px 40px;
+    display: flex;
+    align-items: center;
+}
+
+/* ========================================
+   LEFT SECTION: Navigation Menu
+   flex: 1 ensures it takes equal space as right section
+======================================== */
+.header-left {
+    flex: 1;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.header-nav {
+    display: flex;
+    align-items: center;
+}
+
+.primary-menu {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+    margin: 0;
+    padding: 0;
+}
+
+.primary-menu li {
+    position: relative;
+}
+
+.primary-menu a {
+    font-family: 'Inter', sans-serif !important;
+    font-size: 13px;
+    font-weight: 400;
+    color: #242424;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    padding: 5px 0;
+    display: block;
+    position: relative;
+}
+
+.primary-menu a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #000000;
+    transition: width 0.3s ease;
+}
+
+.primary-menu a:hover::after {
+    width: 100%;
+}
+
+.primary-menu a:hover {
+    color: #000000;
+}
+
+/* Hide Login / Register / Forgot Password if they end up in the nav menu */
+.primary-menu .menu-item a[href*="/login"],
+.primary-menu .menu-item a[href*="/register"],
+.primary-menu .menu-item a[href*="/forgot-password"],
+.primary-menu .menu-item-login,
+.primary-menu .menu-item-register,
+.primary-menu .menu-item-forgot-password {
+    display: none !important;
+}
+
+/* Hide the li wrapper too so it takes zero space */
+.primary-menu li:has(a[href*="/login"]),
+.primary-menu li:has(a[href*="/register"]),
+.primary-menu li:has(a[href*="/forgot-password"]) {
+    display: none !important;
+}
+
+
+/* ========================================
+   CENTER SECTION: Brand Logo
+   Mathematically centered due to flex: 1 on both sides
+======================================== */
+.header-center {
+    flex: 0 0 auto;
+    text-align: center;
+}
+
+.logo-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 24px;
+    font-weight: 600;
+    color: #000000;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    font-family: 'Cormorant Garamond', Georgia, serif !important;
+}
+
+.logo-link:hover {
+    color: #242424;
+}
+
+.logo-icon {
+    font-size: 22px;
+    width: 22px;
+    height: 22px;
+}
+
+.logo-text {
+    font-weight: 600;
+    font-family: 'Cormorant Garamond', Georgia, serif !important;
+}
+
+/* ========================================
+   RIGHT SECTION: User Tools
+   flex: 1 ensures it takes equal space as left section
+======================================== */
+.header-right {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.header-tools {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.tool-link {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: #242424;
+    font-size: 14px;
+    font-weight: 400;
+    transition: all 0.3s ease;
+}
+
+.tool-link:hover {
+    color: #000000;
+}
+
+.tool-link .dashicons {
+    font-size: 20px;
+    width: 20px;
+    height: 20px;
+}
+
+/* Login/Register Link */
+.login-link .tool-text {
+    font-family: 'Inter', sans-serif !important;
+    font-size: 13px;
+    font-weight: 300;
+    text-transform: capitalize;
+}
+
+/* Search, Wishlist, Cart Icons */
+.search-link,
+.wishlist-link,
+.cart-link {
+    position: relative;
+}
+
+/* Cart Price */
+.cart-price {
+    font-size: 13px;
+    font-weight: 600;
+    margin-left: 3px;
+}
+
+/* ========================================
+   RESPONSIVE DESIGN (Desktop First)
+======================================== */
+@media screen and (max-width: 1024px) {
+    .header-container {
+        padding: 15px 20px;
+    }
+
+    .primary-menu {
+        gap: 20px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+
+    /* Mobile menu will be implemented in future phase */
+    .header-nav {
+        display: none;
+    }
+
+    .header-tools {
+        flex: 0 0 auto;
+    }
+
+    .login-link .tool-text {
+        display: none;
+    }
+}
+
+/* ========================================
+   UTILITY CLASSES
+======================================== */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+.text-center {
+    text-align: center;
+}
+
+/* ========================================
+   WORDPRESS CORE CLASSES
+======================================== */
+.alignnone {
+    margin: 5px 20px 20px 0;
+}
+
+.aligncenter,
+div.aligncenter {
+    display: block;
+    margin: 5px auto 5px auto;
+}
+
+.alignright {
+    float: right;
+    margin: 5px 0 20px 20px;
+}
+
+.alignleft {
+    float: left;
+    margin: 5px 20px 20px 0;
+}
+
+.screen-reader-text {
+    clip: rect(1px, 1px, 1px, 1px);
+    position: absolute !important;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+}
+
+/* ========================================
+   CONTENT AREA STYLES
+======================================== */
+.content-area {
+    padding: 60px 0;
+    min-height: 60vh;
+}
+
+.site-main {
+    margin-bottom: 40px;
+}
+
+/* Entry/Post Styles */
+article {
+    margin-bottom: 60px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid #ECECEC;
+}
+
+article:last-child {
+    border-bottom: none;
+}
+
+.entry-header {
+    margin-bottom: 20px;
+}
+
+.entry-title {
+    font-size: 32px;
+    font-weight: 700;
+    color: #242424;
+    margin-bottom: 10px;
+    line-height: 1.3;
+}
+
+.entry-title a {
+    color: #242424;
+}
+
+.entry-title a:hover {
+    color: #000000;
+}
+
+.entry-meta {
+    font-size: 13px;
+    color: #777777;
+    margin-bottom: 20px;
+}
+
+.entry-meta span {
+    margin-right: 15px;
+}
+
+.post-thumbnail {
+    margin-bottom: 30px;
+}
+
+.post-thumbnail img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.entry-content {
+    font-size: 15px;
+    line-height: 1.8;
+    color: #242424;
+}
+
+.entry-content p {
+    margin-bottom: 20px;
+}
+
+.entry-content h1,
+.entry-content h2,
+.entry-content h3,
+.entry-content h4,
+.entry-content h5,
+.entry-content h6 {
+    margin-top: 30px;
+    margin-bottom: 15px;
+    font-weight: 700;
+    color: #242424;
+}
+
+/* Pagination */
+.pagination {
+    margin-top: 40px;
+    text-align: center;
+}
+
+.page-links {
+    margin-top: 20px;
+}
+
+/* No Results */
+.no-results {
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.page-header {
+    margin-bottom: 30px;
+}
+
+.page-title {
+    font-size: 28px;
+    font-weight: 700;
+    color: #242424;
+}
+
+/* ========================================
+   FOOTER STYLES
+======================================== */
+.site-footer {
+    background-color: #F8F8F8;
+    border-top: 1px solid #ECECEC;
+    padding: 40px 0;
+    margin-top: 60px;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+.footer-content {
+    text-align: center;
+    font-size: 14px;
+    color: #777777;
+}
+
+.footer-content p {
+    margin: 5px 0;
+}
+
+.footer-content a {
+    color: #242424;
+    font-weight: 500;
+}
+
+.footer-content a:hover {
+    color: #000000;
+}
+
+
+
+/* ========================================
+   NAVBAR — Transparent to Solid on Scroll
+======================================== */
+
+/* ---- Fixed header: overrides the sticky above ---- */
+.site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9999;
+    background-color: transparent;
+    border-bottom: none;
+    box-shadow: none;
+    /* Smooth transition for ALL visual properties */
+    transition: background-color 0.35s ease,
+        box-shadow 0.35s ease,
+        color 0.35s ease;
+}
+
+/* Solid white + dark text when scrolled (JS adds .scrolled) */
+.site-header.scrolled {
+    background-color: #FFFFFF !important;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+    border-bottom: 1px solid #ECECEC;
+}
+
+/* Restore dark text on all nav elements once scrolled */
+.site-header.scrolled .primary-menu a,
+.site-header.scrolled .logo-text,
+.site-header.scrolled .user-first-name,
+.site-header.scrolled .tool-text,
+.site-header.scrolled .header-tools a:not(.dropdown-item),
+.site-header.scrolled .dashicons:not(.user-dropdown .dashicons) {
+    color: #242424;
+}
+
+.site-header.scrolled .tool-link .dashicons,
+.site-header.scrolled .search-link,
+.site-header.scrolled .wishlist-link,
+.site-header.scrolled .cart-link,
+.site-header.scrolled .search-link .dashicons,
+.site-header.scrolled .wishlist-link .dashicons,
+.site-header.scrolled .cart-link .dashicons {
+    color: #242424;
+    filter: none;
+}
+
+/* -------------------------------------------------------
+   INNER PAGES (everything except homepage / front-page)
+   Header is ALWAYS solid white — no transparent phase
+   Body gets padding-top to clear the fixed header bar
+------------------------------------------------------- */
+body:not(.home):not(.page-template-front-page) .site-header,
+body.page:not(.home) .site-header,
+body.woocommerce .site-header,
+body.woocommerce-page .site-header,
+body.single .site-header,
+body.archive .site-header,
+body.blog .site-header,
+body.search-results .site-header,
+body.error404 .site-header {
+    background-color: #FFFFFF !important;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08) !important;
+    border-bottom: 1px solid #ECECEC !important;
+}
+
+/* Body padding-top so fixed header doesn't overlap page content */
+body:not(.home) {
+    padding-top: 80px;
+}
+
+/* Home page: no padding — hero slides under the transparent header */
+body.home {
+    padding-top: 0;
+}
+
+/* Nav links — slightly increased letter spacing for luxury feel */
+.primary-menu a {
+    letter-spacing: 1.5px;
+    transition: color 0.3s ease;
+}
+
+/* ============================================================
+   HOMEPAGE — TRANSPARENT HEADER
+   Exact selectors confirmed from header.php inspection:
+   #site-header · .primary-menu a · .logo-text · .dashicons
+   .cart-price · .user-first-name · .dropdown-chevron
+   Scoped to body.home — inner pages completely unaffected.
+============================================================ */
+
+/* Smooth colour + filter transition on all nav elements */
+#site-header .primary-menu a,
+#site-header .logo-text,
+#site-header .dashicons,
+#site-header .cart-price,
+#site-header .user-first-name,
+#site-header .login-link-text,
+#site-header .mobile-menu-toggle,
+#site-header .dropdown-chevron {
+    transition: color 0.35s ease, filter 0.35s ease;
+}
+
+/* ---- TRANSPARENT PHASE (homepage, before scroll) ---- */
+/* Hero image is light — always show solid white header with dark text */
+body.home #site-header:not(.scrolled) {
+    background-color: #ffffff !important;
+}
+
+body.home #site-header:not(.scrolled) .primary-menu a,
+body.home #site-header:not(.scrolled) .logo-text,
+body.home #site-header:not(.scrolled) .logo-link,
+body.home #site-header:not(.scrolled) .dashicons,
+body.home #site-header:not(.scrolled) .cart-price,
+body.home #site-header:not(.scrolled) .user-first-name,
+body.home #site-header:not(.scrolled) .login-link-text,
+body.home #site-header:not(.scrolled) .user-account-trigger,
+body.home #site-header:not(.scrolled) .mobile-menu-toggle {
+    color: #1a1a1a !important;
+    filter: none !important;
+}
+
+/* SVG chevron — no invert needed on light header */
+body.home #site-header:not(.scrolled) .dropdown-chevron {
+    filter: none !important;
+}
+
+/* Hover: gold accent */
+body.home #site-header:not(.scrolled) .primary-menu a:hover,
+body.home #site-header:not(.scrolled) .tool-link:hover {
+    color: #c9a96e !important;
+}
+
+/* ---- SCROLLED PHASE (white background, dark text) ---- */
+body.home #site-header.scrolled .primary-menu a,
+body.home #site-header.scrolled .logo-text,
+body.home #site-header.scrolled .logo-link,
+body.home #site-header.scrolled .dashicons,
+body.home #site-header.scrolled .cart-price,
+body.home #site-header.scrolled .user-first-name,
+body.home #site-header.scrolled .login-link-text,
+body.home #site-header.scrolled .user-account-trigger,
+body.home #site-header.scrolled .mobile-menu-toggle {
+    color: #242424 !important;
+}
+
+body.home #site-header.scrolled .dropdown-chevron {
+    filter: none !important;
+}
+
+body.home #site-header.scrolled .primary-menu a:hover,
+body.home #site-header.scrolled .tool-link:hover {
+    color: #000000 !important;
+}
+
+/* Homepage: hero goes full-screen under the transparent header */
+body.home {
+    padding-top: 0 !important;
+}
+
+
+
+
+
+
+
+/* Dropdown items ALWAYS dark — never inherit the white header colour */
+.site-header .user-dropdown .dropdown-item,
+.site-header .user-dropdown a.dropdown-item {
+    color: #444444 !important;
+}
+
+.site-header .user-dropdown .dropdown-item .dashicons {
+    color: #aaaaaa !important;
+}
+
+.site-header .user-dropdown .dropdown-item:hover {
+    background: #f8f8f8;
+    color: #1a1a1a !important;
+}
+
+.site-header .user-dropdown .dropdown-item:hover .dashicons {
+    color: #1a1a1a !important;
+}
+
+/* ========================================
+   HERO SLIDER STYLES — Full Viewport, Premium
+======================================== */
+
+.hero-slider-section {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    min-height: 600px;
+    overflow: hidden;
+}
+
+.hero-swiper {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+}
+
+.swiper-slide {
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    position: relative;
+    height: 100%;
+}
+
+/* Dark gradient overlay — strong on left for text readability */
+.hero-slider-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    background: linear-gradient(to right,
+            rgba(0, 0, 0, 0.72) 0%,
+            rgba(0, 0, 0, 0.45) 45%,
+            rgba(0, 0, 0, 0.10) 75%,
+            rgba(0, 0, 0, 0.00) 100%);
+    pointer-events: none;
+}
+
+/* Subtle grain texture overlay */
+.hero-slider-section::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    opacity: 0.35;
+    pointer-events: none;
+}
+
+/* ========================================
+   HERO STATIC CONTENT — always-visible left-side text
+======================================== */
+
+.hero-static-content {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    width: 50%;
+    max-width: 600px;
+    padding: 0 0 0 80px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+/* ---- Hero label ---- */
+.hero-label {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: rgba(255, 255, 255, 0.75);
+    /* stagger: element 1 */
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.7s ease 0s, transform 0.7s ease 0s;
+}
+
+/* ---- Main H1 heading ---- */
+.hero-heading {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: clamp(44px, 5.5vw, 80px);
+    font-weight: 700;
+    line-height: 1.1;
+    color: #FFFFFF;
+    letter-spacing: -0.5px;
+    /* stagger: element 2 */
+    opacity: 0;
+    transform: translateY(25px);
+    transition: opacity 0.7s ease 0.18s, transform 0.7s ease 0.18s;
+}
+
+/* ---- Description paragraph ---- */
+.hero-description {
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    font-weight: 300;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.82);
+    max-width: 400px;
+    /* stagger: element 3 */
+    opacity: 0;
+    transform: translateY(25px);
+    transition: opacity 0.7s ease 0.36s, transform 0.7s ease 0.36s;
+}
+
+/* ---- CTA Button ---- */
+.hero-cta-button {
+    display: inline-flex;
+    align-items: center;
+    align-self: flex-start;
+    padding: 14px 42px;
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #FFFFFF;
+    background: transparent;
+    border: 1.5px solid rgba(255, 255, 255, 0.85);
+    text-decoration: none;
+    transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    /* stagger: element 4 */
+    opacity: 0;
+    transform: translateY(25px);
+    transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease,
+        opacity 0.7s ease 0.54s, transform 0.7s ease 0.54s;
+}
+
+.hero-cta-button:hover {
+    background: #FFFFFF;
+    color: #1a1a1a;
+    border-color: #FFFFFF;
+}
+
+/* When .is-animated added by JS → reveal all hero elements */
+.hero-static-content.is-animated .hero-label,
+.hero-static-content.is-animated .hero-heading,
+.hero-static-content.is-animated .hero-description,
+.hero-static-content.is-animated .hero-cta-button {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ========================================
+   FLOATING NEW BADGE
+======================================== */
+
+@keyframes badge-pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.55);
+    }
+
+    70% {
+        box-shadow: 0 0 0 18px rgba(212, 175, 55, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(212, 175, 55, 0);
+    }
+}
+
+.hero-badge {
+    position: absolute;
+    top: 100px;
+    right: 60px;
+    z-index: 15;
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #D4AF37 0%, #F5D06E 50%, #B8860B 100%);
+    color: #1a1a1a;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-transform: uppercase;
+    box-shadow: 0 4px 20px rgba(212, 175, 55, 0.5);
+    animation: badge-pulse 2s ease-in-out infinite;
+}
+
+/* ========================================
+   BOUNCING SCROLL-DOWN ARROW
+======================================== */
+
+@keyframes arrow-bounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+        opacity: 0.7;
+    }
+
+    50% {
+        transform: translateY(10px);
+        opacity: 1;
+    }
+}
+
+.hero-scroll-arrow {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 15;
+    color: rgba(255, 255, 255, 0.8);
+    animation: arrow-bounce 1.8s ease-in-out infinite;
+    cursor: pointer;
+}
+
+.hero-scroll-arrow svg {
+    display: block;
+    width: 28px;
+    height: 28px;
+    filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.4));
+}
+
+/* ========================================
+   HERO PROGRESS BAR (replaces dot pagination)
+======================================== */
+
+.hero-progress-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: rgba(255, 255, 255, 0.2);
+    z-index: 20;
+    overflow: hidden;
+}
+
+.hero-progress-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(to right, #D4AF37, #FFFFFF);
+    /* width & transition controlled by JS */
+}
+
+/* ========================================
+   ANIMATIONS — keyframes (keep for legacy .animate-up)
+======================================== */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.swiper-slide-active .animate-up {
+    animation: fadeInUp 0.8s ease forwards;
+}
+
+.swiper-slide-active .slide-headline {
+    animation-delay: 0.2s;
+}
+
+.swiper-slide-active .slide-text {
+    animation-delay: 0.4s;
+}
+
+.swiper-slide-active .slide-button {
+    animation-delay: 0.6s;
+}
+
+.animate-up {
+    opacity: 0;
+}
+
+/* ========================================
+   SWIPER PAGINATION (WoodMart Professional Style)
+======================================== */
+
+/* Pagination Container */
+.swiper-pagination {
+    bottom: 30px !important;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Pagination Bullets (Dots) */
+.swiper-pagination-bullet {
+    width: 10px;
+    height: 10px;
+    background-color: rgba(0, 0, 0, 0.3);
+    opacity: 1;
+    transition: all 0.3s ease;
+    margin: 0 5px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+/* Hover Effect */
+.swiper-pagination-bullet:hover {
+    background-color: rgba(0, 0, 0, 0.5);
+    transform: scale(1.1);
+}
+
+/* Active Bullet (WoodMart Style: Expands to Line) */
+.swiper-pagination-bullet-active {
+    background-color: #000000;
+    width: 28px;
+    border-radius: 5px;
+}
+
+/* Dynamic Bullets - Scale Effect */
+.swiper-pagination-bullet-active-main {
+    background-color: #000000;
+}
+
+.swiper-pagination-bullet-active-prev,
+.swiper-pagination-bullet-active-next {
+    transform: scale(0.85);
+}
+
+.swiper-pagination-bullet-active-prev-prev,
+.swiper-pagination-bullet-active-next-next {
+    transform: scale(0.7);
+}
+
+
+/* ========================================
+   HERO SLIDER RESPONSIVE DESIGN
+======================================== */
+@media screen and (max-width: 1024px) {
+    .hero-slider-section {
+        height: 500px;
+        min-height: 500px;
+    }
+
+    .swiper-slide {
+        height: 500px;
+    }
+
+    .slide-headline {
+        font-size: 48px;
+    }
+
+    .slide-text {
+        font-size: 16px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .hero-slider-section {
+        height: 450px;
+        min-height: 450px;
+    }
+
+    .swiper-slide {
+        height: 450px;
+    }
+
+    .slide-content {
+        padding: 0 20px;
+    }
+
+    .slide-headline {
+        font-size: 32px;
+    }
+
+    .slide-text {
+        font-size: 15px;
+    }
+
+    .slide-button {
+        padding: 12px 30px;
+        font-size: 13px;
+    }
+}
+
+/* ========================================
+   MOBILE RESPONSIVE DESIGN (< 768px)
+======================================== */
+@media screen and (max-width: 767px) {
+
+    /* ========== HEADER & NAVIGATION ========== */
+
+    /* Hide desktop navigation */
+    .header-left {
+        display: none;
+    }
+
+    /* Hide desktop user tools */
+    .header-right {
+        display: none;
+    }
+
+    /* Adjust header container */
+    .header-container {
+        padding: 15px 20px;
+        justify-content: center;
+    }
+
+    /* Center logo on mobile */
+    .header-center {
+        margin: 0;
+    }
+
+    /* Mobile Menu Toggle (Hamburger Icon) */
+    .mobile-menu-toggle {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 30px;
+        height: 22px;
+        cursor: pointer;
+        position: absolute;
+        right: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 1001;
+    }
+
+    .mobile-menu-toggle span {
+        display: block;
+        width: 100%;
+        height: 3px;
+        background-color: #000000;
+        transition: all 0.3s ease;
+        border-radius: 2px;
+    }
+
+    /* Hamburger animation when menu is open */
+    .menu-open .mobile-menu-toggle span:nth-child(1) {
+        transform: rotate(45deg) translate(8px, 8px);
+    }
+
+    .menu-open .mobile-menu-toggle span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .menu-open .mobile-menu-toggle span:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -7px);
+    }
+
+    /* Mobile Navigation Overlay */
+    .menu-open .header-left {
+        display: block;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background-color: #FFFFFF;
+        z-index: 1000;
+        padding-top: 80px;
+        overflow-y: auto;
+    }
+
+    .menu-open .primary-menu {
+        flex-direction: column;
+        gap: 0;
+        text-align: center;
+    }
+
+    .menu-open .primary-menu li {
+        border-bottom: 1px solid #ECECEC;
+    }
+
+    .menu-open .primary-menu a {
+        padding: 20px;
+        font-size: 16px;
+        display: block;
+    }
+
+    /* Prevent body scroll when menu is open */
+    .menu-open {
+        overflow: hidden;
+    }
+
+    /* ========== HERO SLIDER MOBILE OPTIMIZATION ========== */
+
+    /* Push page content below fixed header */
+    body {
+        padding-top: 0;
+        /* hero is full-screen, no offset needed */
+    }
+
+    .hero-slider-section {
+        height: 100svh !important;
+        min-height: 480px !important;
+    }
+
+    /* Hero static content: center on mobile */
+    .hero-static-content {
+        width: 100%;
+        max-width: 100%;
+        padding: 0 24px;
+        top: auto;
+        bottom: auto;
+        left: 0;
+        right: 0;
+        transform: none;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        align-items: center;
+        text-align: center;
+    }
+
+    .hero-label {
+        font-size: 10px;
+        letter-spacing: 2.5px;
+    }
+
+    .hero-heading {
+        font-size: clamp(34px, 8vw, 50px);
+    }
+
+    .hero-description {
+        font-size: 13px;
+        max-width: 90%;
+    }
+
+    .hero-cta-button {
+        align-self: center;
+        padding: 12px 32px;
+        font-size: 11px;
+    }
+
+    /* Hide NEW badge on mobile to avoid overlap */
+    .hero-badge {
+        display: none;
+    }
+
+    /* Scroll arrow stays but smaller */
+    .hero-scroll-arrow {
+        bottom: 20px;
+    }
+
+    .hero-scroll-arrow svg {
+        width: 22px;
+        height: 22px;
+    }
+
+    /* ========== FOOTER ========== */
+
+    .footer-container {
+        padding: 0 20px;
+    }
+
+    .footer-content {
+        font-size: 12px;
+    }
+}
+
+/* Hide mobile toggle on desktop */
+@media screen and (min-width: 768px) {
+    .mobile-menu-toggle {
+        display: none;
+    }
+}
+
+/* ========================================
+   TABLET RESPONSIVE DESIGN (768px - 1024px)
+======================================== */
+@media screen and (max-width: 1024px) and (min-width: 768px) {
+
+    /* ========== HEADER OPTIMIZATION ========== */
+
+    .site-header {
+        padding: 10px 20px;
+    }
+
+    /* Reduce header container padding */
+    .header-container {
+        padding: 10px 20px;
+    }
+
+    /* Reduce menu font size to prevent overflow */
+    .primary-menu a {
+        font-size: 12px;
+        letter-spacing: 0.3px;
+    }
+
+    .primary-menu {
+        gap: 20px;
+    }
+
+    /* Hide login text, keep icon only */
+    .tool-text {
+        display: none;
+    }
+
+    /* Adjust logo size */
+    .logo-text {
+        font-size: 20px;
+    }
+
+    .logo-icon {
+        font-size: 20px;
+    }
+
+    /* ========== HERO SLIDER TABLET OPTIMIZATION ========== */
+
+    .hero-slider-section {
+        height: 500px;
+        min-height: 500px;
+    }
+
+    .swiper-slide {
+        height: 500px;
+    }
+
+    .slide-headline {
+        font-size: 40px;
+    }
+
+    .slide-text {
+        font-size: 16px;
+    }
+
+    .slide-button {
+        padding: 15px 35px;
+        font-size: 13px;
+    }
+}
+
+/* ========================================
+   TABLET WITH MOBILE MENU (< 1024px)
+   Switch to hamburger menu earlier for iPads
+======================================== */
+@media screen and (max-width: 1023px) {
+
+    /* Hide desktop navigation */
+    .header-left {
+        display: none;
+    }
+
+    /* Hide desktop user tools */
+    .header-right {
+        display: none;
+    }
+
+    /* Show mobile toggle */
+    .mobile-menu-toggle {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 30px;
+        height: 22px;
+        cursor: pointer;
+        position: absolute;
+        right: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 1001;
+    }
+
+    .mobile-menu-toggle span {
+        display: block;
+        width: 100%;
+        height: 3px;
+        background-color: #000000;
+        transition: all 0.3s ease;
+        border-radius: 2px;
+    }
+
+    /* Hamburger animation when menu is open */
+    .menu-open .mobile-menu-toggle span:nth-child(1) {
+        transform: rotate(45deg) translate(8px, 8px);
+    }
+
+    .menu-open .mobile-menu-toggle span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .menu-open .mobile-menu-toggle span:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -7px);
+    }
+
+    /* Mobile Navigation Overlay */
+    .menu-open .header-left {
+        display: block;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background-color: #FFFFFF;
+        z-index: 1000;
+        padding-top: 80px;
+        overflow-y: auto;
+    }
+
+    .menu-open .primary-menu {
+        flex-direction: column;
+        gap: 0;
+        text-align: center;
+    }
+
+    .menu-open .primary-menu li {
+        border-bottom: 1px solid #ECECEC;
+    }
+
+    .menu-open .primary-menu a {
+        padding: 20px;
+        font-size: 18px;
+        display: block;
+    }
+
+    /* Prevent body scroll when menu is open */
+    .menu-open {
+        overflow: hidden;
+    }
+
+    /* Center logo on tablet */
+    .header-container {
+        justify-content: center;
+    }
+}
+
+/* ========================================
+   CATEGORY BANNER SECTION — Premium Modern Style
+======================================== */
+
+.category-grid-section {
+    background-color: #FFFFFF;
+}
+
+.category-grid-section .container {
+    width: 100%;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* ---- Grid Row: 3 equal columns, equal height ---- */
+.category-grid {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 20px;
+    width: 100%;
+    align-items: stretch;
+}
+
+/* ============================================================
+   CARD — the main interactive tile
+   Background image is set inline via style="" in PHP.
+   We zoom it on hover using a ::before pseudo-element trick.
+============================================================ */
+.category-banner-item {
+    flex: 1 1 0;
+    min-width: 0;
+    position: relative;
+    height: 280px;
+    background-color: #f5f5f5;
+    background-size: cover;
+    /* fill the card */
+    background-position: center right;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    border-radius: 16px;
+    cursor: pointer;
+    /* Lift + shadow transition */
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+/* Pseudo-element carries the background so we can scale it
+   independently without moving the text */
+.category-banner-item::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    /* top/right/bottom/left: 0 */
+    background: inherit;
+    /* copies background-image from parent */
+    background-size: cover;
+    background-position: center right;
+    transform-origin: center right;
+    transition: transform 0.45s ease;
+    border-radius: inherit;
+    z-index: 0;
+}
+
+/* Card lift on hover */
+.category-banner-item:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.14);
+}
+
+/* Image zoom on hover */
+.category-banner-item:hover::before {
+    transform: scale(1.07);
+}
+
+/* ============================================================
+   GRADIENT OVERLAY — makes left text side readable
+============================================================ */
+.banner-overlay {
+    position: absolute;
+    inset: 0;
+    /* gradient: solid on the left, transparent on the right half */
+    background: linear-gradient(to right,
+            rgba(245, 245, 245, 0.97) 0%,
+            rgba(245, 245, 245, 0.85) 45%,
+            rgba(245, 245, 245, 0.10) 75%,
+            rgba(245, 245, 245, 0.00) 100%);
+    border-radius: inherit;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* ============================================================
+   BANNER CONTENT — text sits above overlay
+============================================================ */
+.banner-content {
+    position: relative;
+    z-index: 2;
+    width: 55%;
+    padding: 0 0 0 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Subtitle (e.g. "NEW COLLECTION") */
+.banner-subtitle {
+    font-size: 11px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1.8px;
+    color: #888;
+    margin: 0;
+    line-height: 1;
+}
+
+/* Main title (e.g. "Shoes") */
+.banner-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin: 0;
+    line-height: 1.25;
+    letter-spacing: -0.3px;
+}
+
+/* ============================================================
+   BUTTON — stylish bordered "READ MORE" with arrow on hover
+============================================================ */
+.banner-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0px;
+    /* gap expands on hover via span */
+    margin-top: 6px;
+    padding: 9px 20px;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #1a1a1a;
+    background: transparent;
+    border: 1.5px solid #1a1a1a;
+    border-radius: 50px;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+    transition: color 0.3s ease,
+        background 0.3s ease,
+        border-color 0.3s ease,
+        padding-right 0.3s ease,
+        gap 0.3s ease;
+    width: fit-content;
+}
+
+/* Arrow: hidden by default, slides in on hover */
+.banner-button::after {
+    content: '→';
+    position: absolute;
+    right: 16px;
+    opacity: 0;
+    transform: translateX(-6px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    font-size: 14px;
+}
+
+.banner-button:hover {
+    background: #1a1a1a;
+    color: #ffffff;
+    border-color: #1a1a1a;
+    padding-right: 38px;
+    /* make room for arrow */
+}
+
+.banner-button:hover::after {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* ============================================================
+   ALSO SUPPORT old .category-* class names (backwards compat)
+============================================================ */
+.category-content {
+    position: relative;
+    z-index: 2;
+    width: 55%;
+    padding-left: 30px;
+}
+
+.category-subtitle {
+    font-size: 11px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1.8px;
+    color: #888;
+    margin: 0 0 8px 0;
+}
+
+.category-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin: 0 0 14px 0;
+    line-height: 1.25;
+}
+
+.category-link {
+    display: inline-flex;
+    align-items: center;
+    padding: 9px 20px;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #1a1a1a;
+    border: 1.5px solid #1a1a1a;
+    border-radius: 50px;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+    transition: color 0.3s ease, background 0.3s ease, padding-right 0.3s ease;
+    width: fit-content;
+}
+
+.category-link::after {
+    content: '→';
+    position: absolute;
+    right: 16px;
+    opacity: 0;
+    transform: translateX(-6px);
+    font-weight: normal;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.category-link:hover {
+    background: #1a1a1a;
+    color: #ffffff;
+    padding-right: 38px;
+}
+
+.category-link:hover::after {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* ============================================================
+   RESPONSIVE — CATEGORY GRID
+============================================================ */
+
+/* Category banner items: equal-width flex children */
+.category-banner-item {
+    flex: 1 1 0;
+    min-width: 0;
+}
+
+/* Tablet (768px – 1024px): keep 3-column row but tighten gap */
+@media screen and (max-width: 1024px) {
+    .category-grid {
+        gap: 15px;
+    }
+
+    .category-banner-item {
+        height: 240px;
+    }
+
+    .banner-content,
+    .category-content {
+        width: 60%;
+        padding-left: 25px;
+    }
+
+    .banner-title,
+    .category-title {
+        font-size: 20px;
+    }
+}
+
+/* Mobile (< 768px): stack vertically */
+@media screen and (max-width: 767px) {
+    .category-grid {
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .category-banner-item {
+        flex: none;
+        width: 100%;
+        height: 200px;
+    }
+
+    .banner-content,
+    .category-content {
+        width: 58%;
+        padding-left: 20px;
+        gap: 8px;
+    }
+
+    .banner-subtitle,
+    .category-subtitle {
+        font-size: 10px;
+        letter-spacing: 1.4px;
+    }
+
+    .banner-title,
+    .category-title {
+        font-size: 18px;
+    }
+
+    .banner-button,
+    .category-link {
+        font-size: 11px;
+        padding: 8px 18px;
+    }
+
+    .banner-button:hover,
+    .category-link:hover {
+        padding-right: 34px;
+    }
+}
+
+
+/* ============================================================
+   FEATURED PRODUCTS SECTION
+   ============================================================ */
+.featured-products-section {
+    background-color: #FFFFFF;
+    padding: 60px 0;
+}
+
+.featured-products-section .container {
+    width: 100%;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+
+.section-title {
+    font-size: 28px;
+    font-weight: 600;
+    color: #333;
+    margin: 0 0 40px 0;
+    text-align: left;
+    letter-spacing: 0.5px;
+}
+
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+}
+
+
+.product-card {
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+}
+
+.product-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+}
+
+
+.product-image-wrapper {
+    position: relative;
+    background-color: #f9f9f9;
+    padding: 20px;
+    overflow: hidden;
+    aspect-ratio: 1 / 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.product-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: transform 0.4s ease;
+}
+
+.product-card:hover .product-image {
+    transform: scale(1.05);
+}
+
+
+.product-image-placeholder {
+    width: 100%;
+    height: 100%;
+    background-color: #e9e9e9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #999;
+    font-size: 12px;
+}
+
+
+.product-info {
+    padding-top: 15px;
+    text-align: left;
+}
+
+
+.product-category {
+    font-size: 12px;
+    color: #999;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin: 0 0 8px 0;
+}
+
+
+.product-title {
+    font-size: 14px;
+    font-weight: 400;
+    color: #333;
+    margin: 0 0 10px 0;
+    line-height: 1.4;
+    transition: color 0.3s ease;
+}
+
+.product-link:hover .product-title {
+    color: #000;
+}
+
+
+.product-price {
+    font-size: 14px;
+    font-weight: 600;
+    color: #83b735;
+    margin: 0;
+}
+
+.product-price .woocommerce-Price-amount {
+    color: #83b735;
+    font-weight: 600;
+}
+
+.product-price del {
+    color: #999;
+    font-weight: 400;
+    margin-right: 8px;
+}
+
+.product-price ins {
+    text-decoration: none;
+    color: #83b735;
+}
+
+
+@media screen and (max-width: 1024px) {
+    .featured-products-section {
+        padding: 50px 0;
+    }
+
+    .featured-products-section .container {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .section-title {
+        font-size: 24px;
+        margin-bottom: 30px;
+    }
+
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .featured-products-section {
+        padding: 40px 0;
+    }
+
+    .featured-products-section .container {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    .section-title {
+        font-size: 22px;
+        margin-bottom: 25px;
+    }
+
+    .product-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .product-image-wrapper {
+        padding: 15px;
+    }
+
+    .product-title {
+        font-size: 13px;
+    }
+
+    .product-category {
+        font-size: 11px;
+    }
+
+    .product-price {
+        font-size: 13px;
+    }
+}
+
+
+
+.home .featured-products-section ul.products,
+.home .woocommerce ul.products,
+.home ul.products {
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.home .featured-products-section ul.products li.product,
+.home .woocommerce ul.products li.product,
+.home ul.products li.product {
+    width: 100% !important;
+    margin-bottom: 0 !important;
+    float: none !important;
+}
+
+.home ul.products li.product {
+    text-align: center;
+}
+
+.home ul.products li.product .woocommerce-loop-product__link {
+    display: block;
+    text-decoration: none;
+}
+
+.home ul.products li.product img {
+    width: 100%;
+    height: auto;
+    background-color: #f9f9f9;
+    padding: 20px;
+    box-sizing: border-box;
+    transition: transform 0.4s ease;
+}
+
+.home ul.products li.product:hover img {
+    transform: scale(1.05);
+}
+
+.home ul.products li.product .woocommerce-loop-product__title,
+.home ul.products li.product h2,
+.home ul.products li.product h3 {
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    color: #333 !important;
+    margin: 15px 0 10px 0 !important;
+    line-height: 1.4;
+    text-align: center;
+}
+
+.home ul.products li.product:hover .woocommerce-loop-product__title,
+.home ul.products li.product:hover h2,
+.home ul.products li.product:hover h3 {
+    color: #000 !important;
+}
+
+.home ul.products li.product .price {
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    color: #83b735 !important;
+    text-align: center;
+    margin: 0;
+}
+
+.home ul.products li.product .price .woocommerce-Price-amount,
+.home ul.products li.product .price ins .woocommerce-Price-amount {
+    color: #83b735 !important;
+    font-weight: 600 !important;
+}
+
+.home ul.products li.product .price del {
+    color: #999 !important;
+    font-weight: 400 !important;
+    margin-right: 8px;
+}
+
+.home ul.products li.product .price ins {
+    text-decoration: none;
+    background: none;
+}
+
+.home ul.products li.product .button {
+    margin-top: 10px;
+    background-color: #83b735;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    font-size: 13px;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+}
+
+.home ul.products li.product .button:hover {
+    background-color: #6fa028;
+}
+
+
+
+@media screen and (max-width: 1024px) {
+
+    .home .featured-products-section ul.products,
+    .home .woocommerce ul.products,
+    .home ul.products {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 20px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+
+    .home .featured-products-section ul.products,
+    .home .woocommerce ul.products,
+    .home ul.products {
+        grid-template-columns: repeat(1, 1fr) !important;
+        gap: 20px;
+    }
+
+    .home ul.products li.product img {
+        padding: 15px;
+    }
+}
+
+.woocommerce ul.products li.product,
+.home ul.products li.product {
+    font-family: 'Inter', 'Lato', sans-serif !important;
+}
+
+
+
+.woocommerce ul.products li.product img,
+.home ul.products li.product img {
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    width: 100%;
+    height: auto;
+}
+
+
+.woocommerce ul.products li.product .woocommerce-loop-product__title,
+.woocommerce ul.products li.product h2,
+.woocommerce ul.products li.product h3 {
+    font-family: 'Inter', sans-serif !important;
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    color: #2d2a2a !important;
+}
+
+.woocommerce ul.products li.product .price,
+.home ul.products li.product .price {
+    font-size: 15px !important;
+    font-weight: bold !important;
+    color: #83b735 !important;
+}
+
+.woocommerce ul.products li.product .onsale,
+.home ul.products li.product .onsale {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: #83b735 !important;
+    color: #ffffff !important;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    z-index: 10;
+    margin: 0;
+    padding: 0;
+    line-height: 1;
+}
+
+.woocommerce ul.products li.product .button,
+.home ul.products li.product .button {
+    transition: all 0.3s ease;
+}
+
+.woocommerce ul.products li.product:hover .button,
+.home ul.products li.product:hover .button {
+    background-color: #000000 !important;
+    color: #ffffff !important;
+}
+
+.woocommerce ul.products li.product,
+.home ul.products li.product {
+    position: relative;
+}
+
+.woocommerce ul.products {
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.woocommerce ul.products li.product {
+    width: 100% !important;
+    margin-bottom: 0 !important;
+    float: none !important;
+    text-align: center;
+}
+
+@media screen and (max-width: 1024px) {
+    .woocommerce ul.products {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 20px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .woocommerce ul.products {
+        grid-template-columns: repeat(1, 1fr) !important;
+        gap: 20px;
+    }
+}
+
+
+.home .woocommerce ul.products,
+.home .featured-products-section ul.products,
+.woocommerce.columns-4 ul.products,
+body.home ul.products {
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 30px !important;
+    margin-bottom: 50px;
+    list-style: none !important;
+    padding: 0 !important;
+}
+
+.home .woocommerce ul.products li.product,
+.home .featured-products-section ul.products li.product,
+body.home ul.products li.product {
+    width: 100% !important;
+    float: none !important;
+    margin: 0 !important;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.home ul.products li.product a.woocommerce-LoopProduct-link,
+.home ul.products li.product .woocommerce-loop-product__link {
+    position: relative;
+    display: block;
+}
+
+.home ul.products li.product .button,
+.home ul.products li.product .add_to_cart_button,
+.home ul.products li.product .product_type_simple,
+.home ul.products li.product .ajax_add_to_cart {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    opacity: 0;
+    background-color: #000000 !important;
+    color: #ffffff !important;
+    padding: 12px 30px;
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    z-index: 10;
+    width: auto;
+    min-width: 150px;
+    text-align: center;
+}
+
+.home ul.products li.product:hover .button,
+.home ul.products li.product:hover .add_to_cart_button,
+.home ul.products li.product:hover .product_type_simple,
+.home ul.products li.product:hover .ajax_add_to_cart {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+.home ul.products li.product .button:hover,
+.home ul.products li.product .add_to_cart_button:hover {
+    background-color: #83b735 !important;
+    color: #ffffff !important;
+}
+
+.home ul.products li.product .attachment-woocommerce_thumbnail,
+.home ul.products li.product img {
+    position: relative;
+}
+
+.home ul.products li.product .woocommerce-loop-product__title,
+.home ul.products li.product .price {
+    position: relative;
+    z-index: 1;
+}
+
+/* Tablet (768px - 1024px): 2 Columns */
+@media screen and (max-width: 1024px) {
+
+    .home .woocommerce ul.products,
+    .home .featured-products-section ul.products,
+    body.home ul.products {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 20px !important;
+    }
+}
+
+/* Mobile (< 768px): 1 Column */
+@media screen and (max-width: 767px) {
+
+    .home .woocommerce ul.products,
+    .home .featured-products-section ul.products,
+    body.home ul.products {
+        grid-template-columns: repeat(1, 1fr) !important;
+        gap: 20px !important;
+    }
+
+    /* Show button by default on mobile (no hover) */
+    .home ul.products li.product .button,
+    .home ul.products li.product .add_to_cart_button {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+        position: static;
+        transform: none;
+        margin-top: 15px;
+        width: 100%;
+    }
+}
+
+
+/* ============================================================
+   FEATURED PRODUCTS SECTION — Premium Redesign
+============================================================ */
+
+/* ---- Section wrapper ---- */
+.featured-products-section {
+    background-color: #f8f8f8;
+    padding: 80px 0 100px;
+}
+
+/* ---- Heading with decorative underline ---- */
+.featured-products-title {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: #1a1a1a;
+    text-align: center;
+    margin-bottom: 12px;
+    position: relative;
+    display: inline-block;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.featured-products-title::after {
+    content: '';
+    display: block;
+    width: 48px;
+    height: 2px;
+    background: linear-gradient(to right, #D4AF37, #b8860b);
+    margin: 12px auto 0;
+}
+
+/* wrapper so the heading + underline sit centred as a block */
+.featured-products-section .container>.featured-products-title {
+    display: block;
+    left: auto;
+    transform: none;
+    text-align: center;
+    margin-bottom: 48px;
+}
+
+/* ---- Product Grid ---- */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    margin-bottom: 52px;
+}
+
+/* ---- Product Card ---- */
+.product-card {
+    position: relative;
+    background: #fff;
+    border-radius: 4px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    /* Scroll-reveal initial state */
+    opacity: 0;
+    transform: translateY(36px);
+}
+
+/* Revealed state (added by IntersectionObserver JS) */
+.product-card.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.6s ease, transform 0.6s ease,
+        box-shadow 0.3s ease;
+    /* keep box-shadow transition active */
+}
+
+/* Hover lift */
+.product-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+}
+
+/* ---- Wishlist heart button ---- */
+.product-wishlist {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    z-index: 20;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255, 255, 255, 0.92);
+    color: #888;
+    font-size: 17px;
+    line-height: 36px;
+    text-align: center;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transform: scale(0.8);
+    transition: opacity 0.25s ease, transform 0.25s ease, color 0.2s ease, background 0.2s ease;
+    backdrop-filter: blur(4px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+}
+
+.product-card:hover .product-wishlist {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.product-wishlist:hover {
+    color: #c0392b;
+    background: #fff;
+}
+
+/* ---- Product image wrapper — contains zoom + overlay ---- */
+.product-image-wrapper {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 4 / 5;
+    background: #f0eeec;
+}
+
+.product-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.45s ease;
+}
+
+.product-card:hover .product-image {
+    transform: scale(1.05);
+}
+
+/* ---- Image dark overlay ---- */
+.product-image-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0);
+    transition: background 0.35s ease;
+    pointer-events: none;
+    z-index: 5;
+}
+
+.product-card:hover .product-image-overlay {
+    background: rgba(0, 0, 0, 0.28);
+}
+
+/* ---- Slide-up Add to Cart button ---- */
+.product-hover-action {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    transform: translateY(100%);
+    transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    background: rgba(26, 26, 26, 0.92);
+    backdrop-filter: blur(4px);
+    padding: 14px 0;
+    text-align: center;
+}
+
+.product-card:hover .product-hover-action {
+    transform: translateY(0);
+}
+
+.product-add-to-cart-label {
+    display: block;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #fff;
+}
+
+/* ---- Product info (below image) ---- */
+.product-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+}
+
+.product-info {
+    padding: 16px 16px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+/* ---- Category label ---- */
+.product-category {
+    font-family: 'Inter', sans-serif;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: #999;
+    margin: 0;
+}
+
+/* ---- Product title ---- */
+.product-title {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: #1a1a1a;
+    line-height: 1.3;
+    margin: 0;
+    transition: color 0.2s ease;
+}
+
+.product-card:hover .product-title {
+    color: #000;
+}
+
+/* ---- Price — override WooCommerce green for sale price ---- */
+.product-price {
+    margin-top: 2px;
+}
+
+/* Regular price (shown next to sale) — grey strikethrough */
+.product-price del,
+.product-price .woocommerce-Price-amount.amount del,
+del .woocommerce-Price-amount {
+    color: #aaa !important;
+    font-size: 12px;
+    font-weight: 400;
+    text-decoration: line-through;
+}
+
+/* Sale price — dark & bold, NOT green */
+.product-price ins,
+.product-price ins .woocommerce-Price-amount {
+    color: #1a1a1a !important;
+    font-weight: 700;
+    font-size: 14px;
+    text-decoration: none;
+    background: none;
+    padding: 0;
+}
+
+/* Regular (non-sale) price */
+.product-price .woocommerce-Price-amount.amount {
+    color: #1a1a1a;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+/* Remove any inherited green from WooCommerce */
+.woocommerce span.onsale,
+.product-price .price {
+    color: inherit;
+}
+
+/* ---- View All Products button ---- */
+.view-all-wrapper {
+    text-align: center;
+    margin-top: 4px;
+}
+
+.view-all-btn {
+    display: inline-block;
+    padding: 14px 52px;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: #1a1a1a;
+    background: transparent;
+    border: 1.5px solid #1a1a1a;
+    text-decoration: none;
+    cursor: pointer;
+    position: relative;
+    z-index: 1;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+.view-all-btn:hover {
+    background: #1a1a1a;
+    color: #fff;
+}
+
+/* ---- Scroll-reveal keyframe ---- */
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(36px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ============================================================
+   FEATURED PRODUCTS — RESPONSIVE
+============================================================ */
+
+/* Tablet: 2 columns */
+@media screen and (max-width: 1024px) {
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+}
+
+/* Mobile: 1 column */
+@media screen and (max-width: 600px) {
+    .featured-products-section {
+        padding: 52px 0 70px;
+    }
+
+    .product-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    /* Always show hover action on touch devices */
+    .product-hover-action {
+        transform: translateY(0);
+    }
+
+    .product-wishlist {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    .view-all-btn {
+        padding: 13px 36px;
+    }
+}
+
+
+/* ============================================================
+   SITE FOOTER — Luxury Dark Style
+============================================================ */
+
+.site-footer {
+    background-color: #1a1a1a;
+    color: rgba(255, 255, 255, 0.65);
+    font-family: 'Inter', sans-serif;
+    position: relative;
+}
+
+/* Subtle top accent line */
+.site-footer::before {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.12), transparent);
+}
+
+.footer-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 80px 24px 0;
+}
+
+/* ── 4-column grid ── */
+.footer-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr 1.3fr;
+    gap: 48px;
+    padding-bottom: 64px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* ── Column 1 — Brand ── */
+.footer-logo {
+    display: inline-block;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    color: #ffffff;
+    text-decoration: none;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    line-height: 1;
+}
+
+.footer-tagline {
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.5);
+    margin: 0 0 28px;
+}
+
+/* Social icons */
+.footer-social {
+    display: flex;
+    gap: 10px;
+}
+
+.footer-social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.6);
+    text-decoration: none;
+    transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.footer-social-link svg {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+}
+
+.footer-social-link:hover {
+    background: #ffffff;
+    color: #1a1a1a;
+    border-color: #ffffff;
+}
+
+/* ── Columns 2 & 3 — Nav lists ── */
+.footer-col-heading {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.9);
+    margin: 0 0 22px;
+}
+
+.footer-nav-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Left-slide underline animation */
+.footer-nav-link {
+    position: relative;
+    font-size: 13px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.55);
+    text-decoration: none;
+    padding-bottom: 2px;
+    transition: color 0.3s ease;
+    display: inline-block;
+}
+
+.footer-nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.7);
+    transition: width 0.3s ease;
+}
+
+.footer-nav-link:hover {
+    color: #ffffff;
+}
+
+.footer-nav-link:hover::after {
+    width: 100%;
+}
+
+/* ── Column 4 — Newsletter ── */
+.footer-newsletter-text {
+    font-size: 13px;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.5);
+    line-height: 1.7;
+    margin: 0 0 20px;
+}
+
+.footer-newsletter-fields {
+    display: flex;
+    align-items: flex-end;
+    gap: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    padding-bottom: 2px;
+}
+
+.footer-newsletter-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    color: #ffffff;
+    padding: 8px 12px 8px 0;
+    caret-color: rgba(255, 255, 255, 0.7);
+}
+
+.footer-newsletter-input::placeholder {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.footer-newsletter-btn {
+    background: #ffffff;
+    color: #1a1a1a;
+    border: none;
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 9px 18px;
+    cursor: pointer;
+    white-space: nowrap;
+    flex-shrink: 0;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+.footer-newsletter-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+}
+
+/* ── Bottom bar ── */
+.footer-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px 0;
+    font-size: 11px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.32);
+    letter-spacing: 0.3px;
+}
+
+.footer-heart {
+    color: rgba(220, 60, 60, 0.75);
+    font-style: normal;
+}
+
+/* ── Responsive ── */
+
+/* Tablet: 2 columns */
+@media screen and (max-width: 900px) {
+    .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 40px 32px;
+    }
+}
+
+/* Mobile: 1 column, centered */
+@media screen and (max-width: 600px) {
+    .footer-inner {
+        padding: 56px 20px 0;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 36px;
+        text-align: center;
+    }
+
+    .footer-logo {
+        display: block;
+    }
+
+    .footer-social {
+        justify-content: center;
+    }
+
+    .footer-nav-link::after {
+        /* underline starts from center on mobile */
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .footer-nav-link:hover::after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .footer-newsletter-fields {
+        flex-direction: column;
+        border-bottom: none;
+        gap: 10px;
+    }
+
+    .footer-newsletter-input {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+        padding-bottom: 8px;
+        text-align: center;
+        width: 100%;
+    }
+
+    .footer-newsletter-btn {
+        width: 100%;
+        padding: 12px;
+        font-size: 11px;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        gap: 8px;
+        text-align: center;
+        padding: 20px 0;
+    }
+}
+
+/* ========================================
+   MOBILE HEADER FIX
+   (max-width: 768px)
+======================================== */
+@media screen and (max-width: 768px) {
+
+    /* 1. Header height fixed — always solid white on mobile, no transparency */
+    .site-header {
+        height: 60px;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+        background-color: #ffffff !important;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08) !important;
+    }
+
+    /* Force all header text and icons dark on mobile —
+       overrides the homepage transparent-header white colour */
+    #site-header .primary-menu a,
+    #site-header .logo-text,
+    #site-header .login-link-text,
+    #site-header .cart-price,
+    #site-header .dashicons,
+    #site-header .user-first-name,
+    #site-header .user-account-trigger {
+        color: #1a1a1a !important;
+    }
+
+    /* Override homepage transparent-header white rules on mobile */
+    body.home #site-header:not(.scrolled) {
+        background-color: #ffffff !important;
+    }
+
+    body.home #site-header:not(.scrolled) .mobile-menu-toggle,
+    body.home #site-header:not(.scrolled) .logo-text,
+    body.home #site-header:not(.scrolled) .tool-link,
+    body.home #site-header:not(.scrolled) .dashicons,
+    body.home #site-header:not(.scrolled) .cart-price,
+    body.home #site-header:not(.scrolled) .login-link-text,
+    body.home #site-header:not(.scrolled) .user-first-name {
+        color: #1a1a1a !important;
+        filter: none !important;
+    }
+
+    .header-container {
+        height: 100%;
+        padding: 0 20px;
+        display: flex;
+        justify-content: space-between;
+        /* Space out left (hidden nav), center (logo), right (tools) */
+        align-items: center;
+    }
+
+    /* 2. Logo centered */
+    .header-center {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .logo-link {
+        font-size: 20px;
+        /* Reduced font size */
+        letter-spacing: 0.25em;
+    }
+
+    .logo-icon {
+        width: 18px;
+        height: 18px;
+    }
+
+    /* 3. Right side icons & Hamburger */
+    .header-right {
+        flex: 0 0 auto;
+        margin-left: auto;
+        /* Push to right */
+    }
+
+    .header-tools {
+        gap: 15px;
+    }
+
+    /* Hide tools except cart and account */
+    .search-link,
+    .wishlist-link {
+        display: none !important;
+    }
+
+    /* Hamburger icon styles */
+    .mobile-menu-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        color: #242424;
+        margin-left: 10px;
+    }
+
+    /* 4. Nav Menu toggled state */
+    .header-left {
+        display: none;
+        /* Hidden by default */
+        position: absolute;
+        top: 60px;
+        /* Below header */
+        left: 0;
+        width: 100%;
+        background-color: #FFFFFF;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        z-index: 999;
+        padding: 0;
+    }
+
+    .header-left.menu-open {
+        display: block;
+        /* Show when class is active */
+        animation: slideDown 0.3s ease forwards;
+    }
+
+    .header-nav {
+        display: block !important;
+        /* Override previous display:none */
+        width: 100%;
+    }
+
+    .primary-menu {
+        flex-direction: column;
+        gap: 0;
+        width: 100%;
+        padding: 10px 0;
+    }
+
+    .primary-menu li {
+        width: 100%;
+        border-bottom: 1px solid #f5f5f5;
+    }
+
+    .primary-menu li:last-child {
+        border-bottom: none;
+    }
+
+    /* Stacked vertically, padded, 14px */
+    .primary-menu a {
+        padding: 15px 20px !important;
+        font-size: 14px !important;
+        width: 100%;
+        display: block;
+    }
+
+    /* Remove the hover underline effect from desktop */
+    .primary-menu a::after {
+        display: none;
+    }
+
+    /* Gold hover on mobile nav links */
+    .primary-menu a:hover {
+        color: #c9a96e !important;
+        transition: color 0.3s ease !important;
+    }
+
+    /* Hide My Account from nav on mobile — shown in profile section instead */
+    .primary-menu li a[href*="my-account"],
+    .primary-menu li a[href*="myaccount"] {
+        display: none !important;
+    }
+
+    /* Also hide the parent li so it leaves no blank gap */
+    .primary-menu li:has(a[href*="my-account"]),
+    .primary-menu li:has(a[href*="myaccount"]) {
+        display: none !important;
+    }
+
+    /* ── Mobile Account / Login menu ──────────────────────────── */
+    /* Divider between nav links and profile section */
+    .mobile-account-menu {
+        display: block !important;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        border-top: 1px solid #e8e8e8;
+        width: 100%;
+    }
+
+    /* Each row — same height/border as nav li */
+    .mobile-account-item {
+        width: 100%;
+        border-bottom: 1px solid #f5f5f5;
+        text-align: center;
+    }
+
+    /* Links — exact match of .primary-menu a on mobile */
+    .mobile-account-item a {
+        display: block;
+        padding: 15px 20px !important;
+        font-family: 'Inter', sans-serif !important;
+        font-size: 14px !important;
+        font-weight: 400 !important;
+        letter-spacing: 0.08em !important;
+        text-transform: uppercase !important;
+        color: #1a1a1a !important;
+        text-decoration: none !important;
+        text-align: center !important;
+        width: 100%;
+    }
+
+    .mobile-account-item a:hover {
+        color: #c9a96e !important;
+    }
+
+    /* Username row — gold, centered, bold */
+    .mobile-account-item--name {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        /* center the icon + name */
+        gap: 8px;
+        padding: 15px 20px;
+        font-family: 'Inter', sans-serif;
+        font-size: 14px;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: #c9a96e;
+    }
+
+    .mobile-account-item--name .dashicons {
+        font-size: 17px;
+        width: 17px;
+        height: 17px;
+        color: #c9a96e;
+        line-height: 1;
+    }
+
+    /* Logout — grey to distinguish from main links */
+    .mobile-account-item:last-child a {
+        color: #999999 !important;
+        font-size: 13px !important;
+    }
+
+    .mobile-account-item:last-child a:hover {
+        color: #c0392b !important;
+    }
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* ============================================================
+   AUTH PAGES — Login / Register / Forgot Password
+   (Minimal Luxury / AMIRA Brand Style)
+============================================================ */
+
+/* ---- Page wrapper ---- */
+.auth-page {
+    min-height: 100vh;
+    background-color: #f8f8f8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    font-family: 'Inter', sans-serif;
+}
+
+/* ---- Card ---- */
+.auth-card {
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 8px 48px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04);
+    padding: 48px 44px 40px;
+    width: 100%;
+    max-width: 420px;
+    position: relative;
+}
+
+/* ---- Logo ---- */
+.auth-logo-wrap {
+    text-align: center;
+    margin-bottom: 8px;
+}
+
+.auth-logo {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    color: #1a1a1a;
+    text-decoration: none;
+    text-transform: uppercase;
+    line-height: 1;
+    display: inline-block;
+    transition: opacity 0.2s ease;
+}
+
+.auth-logo:hover {
+    opacity: 0.7;
+}
+
+/* ---- Heading & Subtitle ---- */
+.auth-title {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 24px;
+    font-weight: 600;
+    color: #1a1a1a;
+    text-align: center;
+    margin: 20px 0 4px;
+    line-height: 1.2;
+}
+
+.auth-subtitle {
+    font-size: 13px;
+    font-weight: 400;
+    color: #999;
+    text-align: center;
+    margin: 0 0 32px;
+    letter-spacing: 0.01em;
+}
+
+/* ---- Form ---- */
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+/* ---- Field Group ---- */
+.auth-field-group {
+    position: relative;
+    margin-bottom: 24px;
+}
+
+.auth-label {
+    display: block;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #aaa;
+    margin-bottom: 8px;
+}
+
+/* ---- Input — border-bottom only ---- */
+.auth-input {
+    width: 100%;
+    border: none;
+    border-bottom: 1.5px solid #e0e0e0;
+    border-radius: 0;
+    outline: none;
+    background: transparent;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    color: #1a1a1a;
+    padding: 8px 40px 8px 0;
+    /* right room for toggle */
+    transition: border-color 0.25s ease;
+    box-sizing: border-box;
+}
+
+.auth-input::placeholder {
+    color: #ccc;
+    font-weight: 300;
+}
+
+.auth-input:focus {
+    border-bottom-color: #1a1a1a;
+}
+
+.auth-input.input-error {
+    border-bottom-color: #e74c3c;
+}
+
+.auth-input.input-success {
+    border-bottom-color: #27ae60;
+}
+
+/* ---- Password wrapper (for toggle icon) ---- */
+.password-wrapper {
+    position: relative;
+}
+
+.password-wrapper .auth-input {
+    padding-right: 40px;
+}
+
+/* ---- Show/Hide toggle ---- */
+.password-toggle {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    color: #bbb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s ease;
+    line-height: 1;
+}
+
+.password-toggle:hover {
+    color: #1a1a1a;
+}
+
+.eye-icon {
+    width: 18px;
+    height: 18px;
+}
+
+/* ---- Password Strength ---- */
+.strength-bar-wrap {
+    height: 3px;
+    background: #f0f0f0;
+    border-radius: 2px;
+    margin-top: 8px;
+    overflow: hidden;
+    display: none;
+    /* shown via JS when user types */
+}
+
+.strength-bar-wrap.visible {
+    display: block;
+}
+
+.strength-bar {
+    height: 100%;
+    width: 0%;
+    border-radius: 2px;
+    transition: width 0.3s ease, background-color 0.3s ease;
+}
+
+.strength-bar.weak {
+    width: 33%;
+    background-color: #e74c3c;
+}
+
+.strength-bar.medium {
+    width: 66%;
+    background-color: #f39c12;
+}
+
+.strength-bar.strong {
+    width: 100%;
+    background-color: #27ae60;
+}
+
+.strength-label {
+    display: block;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #bbb;
+    margin-top: 5px;
+    height: 14px;
+}
+
+/* ---- Field Feedback (inline) ---- */
+.field-feedback,
+.field-error {
+    display: block;
+    font-size: 11px;
+    font-weight: 400;
+    margin-top: 5px;
+    min-height: 16px;
+    line-height: 1.4;
+}
+
+.field-feedback.error,
+.field-error.error {
+    color: #e74c3c;
+}
+
+.field-feedback.success {
+    color: #27ae60;
+}
+
+/* ---- Remember Me row ---- */
+.auth-remember-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 28px;
+}
+
+.auth-checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    user-select: none;
+}
+
+/* Hide default checkbox */
+.auth-checkbox-label input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* Custom checkbox */
+.auth-checkbox-custom {
+    width: 15px;
+    height: 15px;
+    border: 1.5px solid #ccc;
+    display: inline-block;
+    position: relative;
+    flex-shrink: 0;
+    transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.auth-checkbox-label input[type="checkbox"]:checked+.auth-checkbox-custom {
+    background: #1a1a1a;
+    border-color: #1a1a1a;
+}
+
+.auth-checkbox-label input[type="checkbox"]:checked+.auth-checkbox-custom::after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 4px;
+    width: 4px;
+    height: 7px;
+    border: 1.5px solid #fff;
+    border-top: none;
+    border-left: none;
+    transform: rotate(45deg);
+}
+
+.auth-checkbox-text {
+    font-size: 12px;
+    font-weight: 400;
+    color: #888;
+}
+
+/* ---- Small Link ---- */
+.auth-link-small {
+    font-size: 11px;
+    font-weight: 400;
+    color: #aaa;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.auth-link-small:hover {
+    color: #1a1a1a;
+}
+
+/* ---- Global Message (error/success banner) ---- */
+.auth-message {
+    font-size: 12px;
+    font-weight: 500;
+    padding: 0;
+    margin-bottom: 0;
+    border-radius: 4px;
+    line-height: 1.5;
+    min-height: 0;
+    transition: all 0.3s ease;
+}
+
+.auth-message:not(:empty) {
+    padding: 10px 14px;
+    margin-bottom: 16px;
+}
+
+.auth-error {
+    background-color: #fdf2f2;
+    color: #e74c3c;
+    border-left: 3px solid #e74c3c;
+}
+
+.auth-success {
+    background-color: #f0faf5;
+    color: #27ae60;
+    border-left: 3px solid #27ae60;
+}
+
+/* ---- Submit Button ---- */
+.auth-button {
+    width: 100%;
+    padding: 14px 24px;
+    background: #1a1a1a;
+    color: #ffffff;
+    border: none;
+    border-radius: 0;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s ease, transform 0.15s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 4px;
+}
+
+.auth-button:hover {
+    background: #333333;
+}
+
+.auth-button:active {
+    transform: scale(0.99);
+}
+
+.auth-button:disabled {
+    background: #888;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Loading spinner inside button */
+.btn-spinner {
+    display: none;
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+}
+
+.auth-button.loading .btn-spinner {
+    display: inline-block;
+}
+
+.auth-button.loading .btn-text {
+    opacity: 0.7;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* ---- Footer Link ---- */
+.auth-footer-link {
+    text-align: center;
+    margin: 24px 0 0;
+    font-size: 12px;
+    font-weight: 400;
+    color: #aaa;
+}
+
+.auth-link {
+    color: #1a1a1a;
+    font-weight: 600;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s ease;
+}
+
+.auth-link:hover {
+    border-bottom-color: #1a1a1a;
+}
+
+
+/* Mobile account menu — hidden on desktop, shown by mobile breakpoint */
+.mobile-account-menu {
+    display: none;
+}
+
+
+/* ============================================================
+   HEADER — Account Section (.header-account)
+   Scoped to header so it never bleeds into other sections.
+   Works for both the logged-in dropdown and the logged-out link.
+============================================================ */
+
+/* ---- Wrapper: establishes the positioning context ---- */
+header .header-account {
+    position: relative;
+    /* dropdown positioned against this */
+    display: flex;
+    align-items: center;
+}
+
+/* ---- Logged-out: Login/Register link ---- */
+header .header-account .login-link {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    text-decoration: none;
+    color: #242424;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 300;
+    letter-spacing: 0.02em;
+    transition: color 0.2s ease;
+    white-space: nowrap;
+}
+
+header .header-account .login-link:hover {
+    color: #000;
+}
+
+header .header-account .login-link .dashicons {
+    font-size: 20px;
+    width: 20px;
+    height: 20px;
+}
+
+/* ---- Logged-in: Trigger button ---- */
+header .header-account .user-account-trigger {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    color: #242424;
+    letter-spacing: 0.04em;
+    transition: color 0.2s ease;
+    white-space: nowrap;
+}
+
+header .header-account .user-account-trigger:hover {
+    color: #000;
+}
+
+header .header-account .user-account-trigger .dashicons {
+    font-size: 20px;
+    width: 20px;
+    height: 20px;
+}
+
+header .header-account .dropdown-chevron {
+    width: 12px;
+    height: 12px;
+    transition: transform 0.25s ease;
+    flex-shrink: 0;
+}
+
+/* Chevron flips when open */
+header .header-account.open .dropdown-chevron,
+header .header-account:focus-within .dropdown-chevron {
+    transform: rotate(180deg);
+}
+
+/* ---- Dropdown panel — hidden by default ---- */
+header .header-account .user-dropdown {
+    position: absolute;
+    top: calc(100% + 16px);
+    /* appears just below the trigger */
+    right: 0;
+    min-width: 160px;
+    background: #ffffff;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12), 0 2px 8px rgba(0, 0, 0, 0.06);
+    border-radius: 8px;
+    border: 1px solid rgba(0, 0, 0, 0.07);
+    z-index: 9999;
+    /* above everything */
+    overflow: hidden;
+    /* Hidden state */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px);
+    transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease;
+    pointer-events: none;
+}
+
+/* Visible on hover (desktop) OR when .open class added (JS) */
+header .header-account:hover .user-dropdown,
+header .header-account.open .user-dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+/* Small caret pointer */
+header .header-account .user-dropdown::before {
+    content: '';
+    position: absolute;
+    top: -6px;
+    right: 16px;
+    width: 10px;
+    height: 10px;
+    background: #ffffff;
+    border-left: 1px solid rgba(0, 0, 0, 0.07);
+    border-top: 1px solid rgba(0, 0, 0, 0.07);
+    transform: rotate(45deg);
+}
+
+/* ---- Dropdown items ---- */
+header .header-account .dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 12px 20px;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    color: #444;
+    text-decoration: none;
+    background: none;
+    border: none;
+    width: 100%;
+    box-sizing: border-box;
+    text-align: left;
+    cursor: pointer;
+    letter-spacing: 0.02em;
+    transition: background 0.15s ease, color 0.15s ease;
+}
+
+header .header-account .dropdown-item .dashicons {
+    font-size: 15px;
+    width: 15px;
+    height: 15px;
+    color: #aaa;
+    transition: color 0.15s ease;
+    flex-shrink: 0;
+}
+
+header .header-account .dropdown-item:hover {
+    background: #f8f8f8;
+    color: #1a1a1a;
+}
+
+header .header-account .dropdown-item:hover .dashicons {
+    color: #1a1a1a;
+}
+
+header .header-account .dropdown-item+.dropdown-item {
+    border-top: 1px solid #f2f2f2;
+}
+
+/* Logout: red on hover */
+header .header-account .dropdown-logout:hover {
+    color: #e74c3c;
+}
+
+header .header-account .dropdown-logout:hover .dashicons {
+    color: #e74c3c;
+}
+
+
+/* ============================================================
+   AUTH PAGES — RESPONSIVE
+============================================================ */
+
+@media screen and (max-width: 480px) {
+    .auth-card {
+        padding: 36px 24px 32px;
+        border-radius: 8px;
+    }
+
+    .auth-logo {
+        font-size: 26px;
+    }
+
+    .auth-title {
+        font-size: 21px;
+    }
+
+    .auth-remember-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+}
+
+/* ============================================================
+   HEADER ACCOUNT — MOBILE (max-width: 768px)
+   On mobile the whole account section (dropdown trigger + link)
+   is hidden because the hamburger nav takes over.
+   Only the icon is kept visible; text + chevron are hidden.
+============================================================ */
+@media screen and (max-width: 768px) {
+
+    /* Hide dropdown trigger text + chevron — icon only */
+    header .header-account .user-first-name,
+    header .header-account .dropdown-chevron {
+        display: none;
+    }
+
+    /* Ensure dropdown doesn't appear on mobile (tap triggers are unreliable) */
+    header .header-account .user-dropdown {
+        display: none !important;
+    }
+
+    /* Hide the "Login / Register" text on mobile, keep icon */
+    header .header-account .login-link-text {
+        display: none;
+    }
+}
+
+
+/* ============================================================
+   AUTH PAGES — Login / Register / Forgot Password
+   Shared card layout and field styles
+============================================================ */
+
+/* ---- Page wrapper ---- */
+.auth-page {
+    min-height: 100vh;
+    background: #f8f8f8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 20px;
+    box-sizing: border-box;
+}
+
+/* ---- Card ---- */
+.auth-card {
+    background: #ffffff;
+    width: 100%;
+    max-width: 420px;
+    border-radius: 12px;
+    padding: 48px 44px 40px;
+    box-shadow: 0 4px 40px rgba(0, 0, 0, 0.07), 0 1px 8px rgba(0, 0, 0, 0.04);
+    box-sizing: border-box;
+}
+
+/* ---- AMIRA logo inside auth card ---- */
+.auth-logo-wrap {
+    text-align: center;
+    margin-bottom: 28px;
+}
+
+.auth-logo {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 30px;
+    font-weight: 600;
+    letter-spacing: 0.25em;
+    color: #1a1a1a;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+/* ---- Titles ---- */
+.auth-title {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 24px;
+    font-weight: 600;
+    color: #1a1a1a;
+    text-align: center;
+    margin: 0 0 6px;
+    letter-spacing: 0.04em;
+}
+
+.auth-subtitle {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 300;
+    color: #888;
+    text-align: center;
+    margin: 0 0 32px;
+    letter-spacing: 0.02em;
+}
+
+/* ---- Form ---- */
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+/* ---- Field group ---- */
+.auth-field-group {
+    margin-bottom: 22px;
+}
+
+.auth-label {
+    display: block;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    color: #999;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+}
+
+/* ---- Inputs: border-bottom only ---- */
+.auth-input {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    border: none;
+    border-bottom: 1px solid #e0e0e0;
+    padding: 10px 0;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    color: #1a1a1a;
+    background: transparent;
+    outline: none;
+    transition: border-color 0.2s ease;
+    border-radius: 0;
+}
+
+.auth-input::placeholder {
+    color: #ccc;
+    font-weight: 300;
+}
+
+.auth-input:focus {
+    border-bottom-color: #1a1a1a;
+}
+
+/* Error / success state on inputs */
+.auth-input.input-error {
+    border-bottom-color: #e74c3c;
+}
+
+.auth-input.input-success {
+    border-bottom-color: #27ae60;
+}
+
+/* ---- Password wrapper (input + eye toggle) ---- */
+.password-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.password-wrapper .auth-input {
+    flex: 1;
+    padding-right: 36px;
+}
+
+.password-toggle {
+    position: absolute;
+    right: 0;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    color: #aaa;
+    display: flex;
+    align-items: center;
+    transition: color 0.2s ease;
+}
+
+.password-toggle:hover {
+    color: #1a1a1a;
+}
+
+.eye-icon {
+    width: 18px;
+    height: 18px;
+    display: block;
+}
+
+/* ---- Inline field feedback text ---- */
+.field-feedback {
+    display: block;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    margin-top: 5px;
+    min-height: 14px;
+    transition: color 0.2s ease;
+}
+
+.field-feedback.error {
+    color: #e74c3c;
+}
+
+.field-feedback.success {
+    color: #27ae60;
+}
+
+/* ---- Password strength bar ---- */
+.strength-bar-wrap {
+    height: 3px;
+    background: #f0f0f0;
+    border-radius: 2px;
+    margin-top: 8px;
+    margin-bottom: 4px;
+    overflow: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.strength-bar-wrap.visible {
+    opacity: 1;
+}
+
+.strength-bar {
+    height: 100%;
+    width: 0;
+    border-radius: 2px;
+    transition: width 0.4s ease, background-color 0.3s ease;
+}
+
+.strength-bar.weak {
+    width: 33%;
+    background: #e74c3c;
+}
+
+.strength-bar.medium {
+    width: 66%;
+    background: #f39c12;
+}
+
+.strength-bar.strong {
+    width: 100%;
+    background: #27ae60;
+}
+
+.strength-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #aaa;
+    display: block;
+    margin-bottom: 4px;
+}
+
+/* ---- Remember Me row (login page) ---- */
+.auth-remember-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+    margin-top: -4px;
+}
+
+.auth-checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+}
+
+.auth-checkbox-label input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.auth-checkbox-custom {
+    width: 14px;
+    height: 14px;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    display: inline-block;
+    position: relative;
+    flex-shrink: 0;
+    transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.auth-checkbox-label input:checked~.auth-checkbox-custom {
+    background: #1a1a1a;
+    border-color: #1a1a1a;
+}
+
+.auth-checkbox-label input:checked~.auth-checkbox-custom::after {
+    content: '';
+    position: absolute;
+    left: 3px;
+    top: 0px;
+    width: 4px;
+    height: 8px;
+    border: 1.5px solid #fff;
+    border-top: none;
+    border-left: none;
+    transform: rotate(45deg);
+}
+
+.auth-checkbox-text {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: #666;
+}
+
+.auth-link-small {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: #888;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.auth-link-small:hover {
+    color: #1a1a1a;
+    border-bottom-color: #1a1a1a;
+}
+
+/* ---- Global auth message (error / success) ---- */
+.auth-message {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    text-align: center;
+    min-height: 20px;
+    padding: 0;
+    margin-bottom: 16px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+.auth-message.auth-error {
+    color: #e74c3c;
+}
+
+.auth-message.auth-success {
+    color: #27ae60;
+}
+
+/* ---- Submit button ---- */
+.auth-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    padding: 14px 24px;
+    background: #1a1a1a;
+    color: #ffffff;
+    border: none;
+    border-radius: 2px;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    cursor: pointer;
+    margin-top: 8px;
+    transition: background 0.25s ease, transform 0.15s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.auth-button:hover:not(:disabled) {
+    background: #333333;
+}
+
+.auth-button:active:not(:disabled) {
+    transform: translateY(1px);
+}
+
+.auth-button:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+/* Spinner (shown via .loading class on button) */
+.btn-spinner {
+    display: none;
+    width: 14px;
+    height: 14px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top-color: #ffffff;
+    border-radius: 50%;
+    animation: btn-spin 0.7s linear infinite;
+    flex-shrink: 0;
+}
+
+.auth-button.loading .btn-spinner {
+    display: block;
+}
+
+.auth-button.loading .btn-text {
+    opacity: 0.6;
+}
+
+@keyframes btn-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* ---- Footer link (Login ↔ Register) ---- */
+.auth-footer-link {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 300;
+    color: #888;
+    text-align: center;
+    margin-top: 24px;
+    margin-bottom: 0;
+}
+
+.auth-link {
+    color: #1a1a1a;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    font-weight: 500;
+    transition: border-color 0.2s ease;
+}
+
+.auth-link:hover {
+    border-bottom-color: #1a1a1a;
+}
+
+
+/* ============================================================
+   AUTH PAGES — RESPONSIVE (mobile)
+============================================================ */
+
+@media screen and (max-width: 480px) {
+    .auth-page {
+        padding: 40px 16px;
+        align-items: flex-start;
+    }
+
+    .auth-card {
+        padding: 36px 24px 32px;
+        border-radius: 8px;
+    }
+
+    .auth-logo {
+        font-size: 26px;
+    }
+
+    .auth-title {
+        font-size: 21px;
+    }
+
+    .auth-remember-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+}
+
+/* ============================================================
+   HERO TOP GRADIENT
+   Dark-to-transparent veil at the top of the hero slider.
+   Two approaches — whichever is present works:
+     1. CSS ::before (no extra HTML required)
+     2. .hero-top-gradient div (already in front-page.php)
+   Makes white header text readable over ANY hero image.
+============================================================ */
+
+/* ::before approach — pure CSS, nothing to add to PHP */
+.hero-slider-section {
+    position: relative;
+    /* required for absolute children */
+}
+
+.hero-slider-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 200px;
+    background: linear-gradient(to bottom,
+            rgba(0, 0, 0, 0.55) 0%,
+            rgba(0, 0, 0, 0.18) 55%,
+            transparent 100%);
+    z-index: 2;
+    pointer-events: none;
+}
+
+/* div fallback — matches the .hero-top-gradient element in front-page.php */
+.hero-top-gradient {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 200px;
+    background: linear-gradient(to bottom,
+            rgba(0, 0, 0, 0.55) 0%,
+            rgba(0, 0, 0, 0.18) 55%,
+            transparent 100%);
+    z-index: 2;
+    pointer-events: none;
+}
+
+
+/* ============================================================
+   AMIRA SINGLE PRODUCT — single-product.php
+   Minimal · Luxury · Elegant
+   Prefix: asp-
+============================================================ */
+
+/* ── Page wrapper ─────────────────────────────────────────── */
+.amira-single-product {
+    max-width: 1280px;
+    margin: 40px auto 80px;
+    padding: 0 40px;
+    font-family: 'Inter', sans-serif;
+    color: #1a1a1a;
+}
+
+/* ── Breadcrumbs ──────────────────────────────────────────── */
+.asp-breadcrumb {
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 40px;
+    letter-spacing: 0.05em;
+}
+
+.asp-breadcrumb a {
+    color: #666;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.asp-breadcrumb a:hover {
+    color: #c9a96e;
+}
+
+.asp-bc-sep {
+    margin: 0 10px;
+    color: #ccc;
+}
+
+.asp-bc-current {
+    color: #1a1a1a;
+}
+
+/* ── Layout ───────────────────────────────────────────────── */
+.asp-main-wrapper {
+    display: grid;
+    grid-template-columns: 55% 45%;
+    gap: 60px;
+    align-items: flex-start;
+}
+
+/* ── Gallery Section ──────────────────────────────────────── */
+.asp-gallery-section {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    background: #fff;
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.asp-main-image {
+    background: #f5f5f5;
+    padding: 40px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.asp-main-img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    aspect-ratio: 1/1;
+    border-radius: 4px;
+    transition: opacity 0.4s ease;
+}
+
+.asp-main-img.asp-img-fade {
+    opacity: 0;
+}
+
+.asp-thumbnails {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+    gap: 16px;
+}
+
+.asp-thumb {
+    width: 100%;
+    aspect-ratio: 1/1;
+    border: 1px solid #eee;
+    background: #f5f5f5;
+    padding: 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.asp-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.asp-thumb:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.asp-thumb--active {
+    border: 2px solid #c9a96e;
+}
+
+/* ── Info Section ─────────────────────────────────────────── */
+.asp-info-section {
+    padding-top: 20px;
+}
+
+.asp-category-label {
+    color: #c9a96e;
+    text-transform: uppercase;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    margin-bottom: 12px;
+    font-weight: 600;
+}
+
+.asp-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem;
+    line-height: 1.2;
+    margin-bottom: 12px;
+    color: #1a1a1a;
+    font-weight: 400;
+}
+
+.asp-rating {
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: #888;
+}
+
+.asp-rating .star-rating {
+    color: #c9a96e;
+    font-size: 14px;
+}
+
+.asp-price {
+    font-size: 1.4rem;
+    color: #1a1a1a;
+    font-weight: 600;
+    padding-bottom: 24px;
+    border-bottom: 1px solid #c9a96e;
+    margin-bottom: 24px;
+}
+
+.asp-price del {
+    color: #aaa;
+    font-weight: 400;
+    font-size: 1.1rem;
+    margin-right: 8px;
+}
+
+.asp-short-desc {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.8;
+    margin-bottom: 32px;
+}
+
+.asp-stock {
+    margin-bottom: 24px;
+}
+
+.asp-stock--in {
+    display: inline-block;
+    background: #e8f5e9;
+    color: #2e7d32;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.asp-stock--out {
+    display: inline-block;
+    background: #ffebee;
+    color: #c62828;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.asp-stock--low {
+    display: inline-block;
+    background: #fff8e1;
+    color: #c9a96e;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    margin-left: 8px;
+}
+
+/* ── Actions (Add to Cart, Quantity) ──────────────────────── */
+.asp-atc-form {
+    margin-bottom: 32px;
+}
+
+.asp-action-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 24px;
+}
+
+.asp-qty-wrap.quantity {
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.qty-minus,
+.qty-plus {
+    width: 40px;
+    height: 44px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    color: #1a1a1a;
+    transition: background 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.qty-minus:hover,
+.qty-plus:hover {
+    background: #f5f5f5;
+}
+
+.qty {
+    width: 50px;
+    height: 44px;
+    text-align: center;
+    border: none;
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    font-size: 16px;
+    color: #1a1a1a;
+    -moz-appearance: textfield;
+    appearance: textfield;
+}
+
+.qty::-webkit-outer-spin-button,
+.qty::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.asp-atc-btn {
+    flex: 1;
+    background: #1a1a1a;
+    color: #fff;
+    border: none;
+    padding: 16px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.asp-atc-btn:hover {
+    background: #333;
+}
+
+.asp-wishlist-btn {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 1px solid #ddd;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #1a1a1a;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+}
+
+.asp-wishlist-btn:hover {
+    background: #c9a96e;
+    border-color: #c9a96e;
+    color: #fff;
+}
+
+.asp-wishlist-btn svg {
+    width: 20px;
+    height: 20px;
+}
+
+.asp-buy-now-btn {
+    width: 100%;
+    display: block;
+    background: transparent;
+    border: 1.5px solid #1a1a1a;
+    color: #1a1a1a;
+    padding: 16px;
+    margin-top: 12px;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.asp-buy-now-btn:hover {
+    background: #1a1a1a;
+    color: #fff;
+}
+
+/* ── Shipping & Returns Reassurance ───────────────────────── */
+.asp-reassurance {
+    display: flex;
+    gap: 16px;
+    margin-top: 32px;
+    padding-top: 32px;
+    border-top: 1px solid #eee;
+}
+
+.asp-reassurance-item {
+    flex: 1;
+    background: #f9f9f9;
+    padding: 16px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 12px;
+}
+
+.asp-reassurance-item svg {
+    width: 24px;
+    height: 24px;
+    color: #1a1a1a;
+}
+
+.asp-reassurance-item span {
+    font-size: 11px;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    line-height: 1.4;
+}
+
+/* ── Meta Info (SKU, Categories) ──────────────────────────── */
+.asp-meta {
+    margin-top: 32px;
+    padding-top: 24px;
+    border-top: 1px solid #eee;
+    font-size: 12px;
+    color: #888;
+}
+
+.asp-meta-row {
+    margin-bottom: 8px;
+}
+
+.asp-meta-label {
+    font-weight: 600;
+    color: #1a1a1a;
+    margin-right: 6px;
+}
+
+.asp-meta a {
+    color: #888;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.asp-meta a:hover {
+    color: #c9a96e;
+}
+
+/* ── Accordion Tabs ───────────────────────────────────────── */
+.asp-tabs-section {
+    margin-top: 60px;
+    border-top: 1px solid #eee;
+}
+
+.asp-accordion {
+    border-bottom: 1px solid #eee;
+}
+
+.asp-accordion-trigger {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid transparent;
+    padding: 24px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Inter', sans-serif;
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    font-weight: 600;
+    color: #666;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.asp-accordion-trigger--open {
+    color: #1a1a1a;
+    border-bottom: 2px solid #c9a96e;
+    margin-bottom: -1px;
+}
+
+.asp-accordion-icon {
+    width: 16px;
+    height: 16px;
+    transition: transform 0.3s ease;
+}
+
+.asp-accordion-trigger--open .asp-accordion-icon {
+    transform: rotate(180deg);
+}
+
+.asp-accordion-body {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.4s ease, padding 0.4s ease;
+    overflow: hidden;
+    padding: 0;
+}
+
+.asp-accordion-body>.asp-accordion-content {
+    min-height: 0;
+}
+
+.asp-accordion-body:not(.asp-accordion-body--closed) {
+    grid-template-rows: 1fr;
+    padding: 24px 0;
+}
+
+.asp-accordion-content p {
+    font-size: 15px;
+    line-height: 1.8;
+    color: #555;
+    margin-bottom: 16px;
+}
+
+.asp-accordion-content p:last-child {
+    margin-bottom: 0;
+}
+
+/* Attributes table inside tabs */
+.asp-attr-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.asp-attr-table th {
+    width: 30%;
+    font-weight: 600;
+    padding: 12px 16px 12px 0;
+    border-bottom: 1px solid #f5f5f5;
+    text-align: left;
+    color: #1a1a1a;
+    font-size: 14px;
+}
+
+.asp-attr-table td {
+    padding: 12px 0;
+    border-bottom: 1px solid #f5f5f5;
+    color: #666;
+    font-size: 14px;
+}
+
+/* ── Related Products ─────────────────────────────────────── */
+.asp-related-section {
+    margin-top: 80px;
+}
+
+.asp-related-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.2rem;
+    font-weight: 500;
+    text-align: center;
+    color: #1a1a1a;
+    margin-bottom: 40px;
+    position: relative;
+    padding-bottom: 16px;
+}
+
+.asp-related-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 2px;
+    background: #c9a96e;
+}
+
+.asp-related-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+}
+
+/* (Re-use shop card styling for related) */
+.asp-related-card {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.3s ease;
+}
+
+.asp-related-card:hover {
+    transform: translateY(-4px);
+}
+
+.asp-related-img-wrap {
+    background: #f5f5f5;
+    aspect-ratio: 3/4;
+    overflow: hidden;
+    position: relative;
+    border-radius: 4px;
+    margin-bottom: 16px;
+}
+
+.asp-related-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.asp-related-card:hover .asp-related-img-wrap img {
+    transform: scale(1.05);
+}
+
+.asp-related-info {
+    text-align: center;
+}
+
+.asp-related-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    margin-bottom: 8px;
+    color: #1a1a1a;
+}
+
+.asp-related-price {
+    font-size: 1rem;
+    color: #666;
+    font-weight: 600;
+}
+
+/* ── Sticky ATC Bar ───────────────────────────────────────── */
+.asp-sticky-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: #fff;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 40px;
+    z-index: 999;
+    transform: translateY(100%);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.asp-sticky-bar--visible {
+    transform: translateY(0);
+}
+
+.asp-sticky-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.asp-sticky-img {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+    border-radius: 4px;
+    background: #f5f5f5;
+    padding: 4px;
+}
+
+.asp-sticky-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: #1a1a1a;
+    font-family: 'Cormorant Garamond', serif;
+}
+
+.asp-sticky-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.asp-sticky-price {
+    font-weight: 600;
+    font-size: 16px;
+    color: #1a1a1a;
+}
+
+.asp-sticky-btn {
+    background: #1a1a1a;
+    color: #fff;
+    border: none;
+    padding: 12px 24px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-size: 12px;
+    font-weight: 600;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.asp-sticky-btn:hover {
+    background: #333;
+}
+
+/* ── Responsive ───────────────────────────────────────────── */
+
+/* Tablet (Max 991px) */
+@media (max-width: 991px) {
+    .asp-main-wrapper {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .asp-related-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Mobile (Max 576px) */
+@media (max-width: 576px) {
+    .amira-single-product {
+        padding: 0 20px;
+        margin-top: 20px;
+    }
+
+    .asp-title {
+        font-size: 2rem;
+    }
+
+    .asp-price {
+        font-size: 1.25rem;
+    }
+
+    .asp-action-row {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .asp-wishlist-btn {
+        width: 100%;
+        margin-left: 0;
+        margin-top: 12px;
+        border-radius: 4px;
+    }
+
+    .asp-reassurance {
+        flex-direction: column;
+    }
+
+    .asp-related-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .asp-sticky-bar {
+        padding: 12px 20px;
+    }
+
+    .asp-sticky-img {
+        display: none;
+    }
+
+    .asp-sticky-price {
+        display: none;
+    }
+}
+
+/* ── Out of stock message ─────────────────────────────────── */
+.asp-out-of-stock-msg {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    color: #666;
+    padding: 20px;
+    background: #fafafa;
+    border: 1px solid #eee;
+    margin-bottom: 24px;
+}
+
+.asp-out-of-stock-msg a {
+    color: #c9a96e;
+    text-decoration: none;
+}
+
+/* ── WooCommerce reviews ──────────────────────────────────── */
+#reviews h2,
+#reviews h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    color: #1a1a1a;
+    margin-bottom: 20px;
+}
+
+#reviews .comment-form-rating label {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: #1a1a1a;
+}
+
+/* ============================================================
+   AMIRA SHOP — Product Grid & Cards
+   archive-product.php + content-product.php
+============================================================ */
+
+/* ── Shop page wrapper ─────────────────────────────────────── */
+.amira-shop-wrapper {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 60px 40px 80px;
+}
+
+/* ── WooCommerce outer container reset ─────────────────────── */
+/* woocommerce_content() wraps everything in .woocommerce */
+.amira-shop-wrapper .woocommerce {
+    width: 100%;
+}
+
+/* ── Grid: applied directly to WC's ul.products ────────────── */
+/* WC outputs: <ul class="products columns-4"> … </ul>         */
+.woocommerce ul.products,
+.woocommerce-page ul.products {
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 28px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    list-style: none !important;
+    float: none !important;
+    clear: both !important;
+}
+
+/* ── Grid cell: li.product ─────────────────────────────────── */
+/* Keep li simple — just a grid cell, no extra flex/height     */
+.woocommerce ul.products li.product,
+.woocommerce-page ul.products li.product {
+    float: none !important;
+    width: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    clear: none !important;
+    /* Remove default WC min-height, overflow etc */
+    min-height: 0 !important;
+    overflow: visible !important;
+    background: transparent !important;
+    position: static !important;
+}
+
+/* ── .amira-card — the actual card inside each li ──────────── */
+.amira-card {
+    background: #ffffff;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+    transition: box-shadow 0.3s ease;
+    border: 1px solid #f0f0f0;
+}
+
+.amira-card:hover {
+    box-shadow: 0 6px 28px rgba(0, 0, 0, 0.09);
+}
+
+/* ── Image link ────────────────────────────────────────────── */
+.amira-card__image-link {
+    display: block;
+    overflow: hidden;
+    background: #f5f5f5;
+    flex-shrink: 0;
+    /* No aspect-ratio here — controlled on the img itself */
+}
+
+/* ── Product image ─────────────────────────────────────────── */
+.amira-card__image-link img {
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 1 / 1 !important;
+    object-fit: contain !important;
+    object-position: center !important;
+    padding: 20px !important;
+    background: #f5f5f5 !important;
+    margin: 0 !important;
+    transition: transform 0.4s ease !important;
+}
+
+.amira-card:hover .amira-card__image-link img {
+    transform: scale(1.04) !important;
+}
+
+/* ── Info area ─────────────────────────────────────────────── */
+.amira-card__info {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    padding: 14px 14px 0;
+    background: #ffffff;
+}
+
+/* ── Product title ─────────────────────────────────────────── */
+.amira-card__title {
+    font-family: 'Cormorant Garamond', Georgia, serif !important;
+    font-size: 16px !important;
+    font-weight: 600 !important;
+    color: #1a1a1a !important;
+    margin: 0 0 6px !important;
+    padding: 0 !important;
+    line-height: 1.3 !important;
+}
+
+.amira-card__title a {
+    color: #1a1a1a !important;
+    text-decoration: none !important;
+    transition: color 0.2s ease;
+}
+
+.amira-card__title a:hover {
+    color: #c9a96e !important;
+}
+
+/* ── Price ─────────────────────────────────────────────────── */
+.amira-card__price {
+    font-family: 'Inter', sans-serif !important;
+    font-size: 14px !important;
+    font-weight: 400 !important;
+    color: #1a1a1a !important;
+    margin: 0 0 14px !important;
+    padding: 0 !important;
+    flex-grow: 1;
+    /* pushes button to bottom */
+}
+
+/* Override WC green colour on price */
+.amira-card__price .woocommerce-Price-amount,
+.amira-card__price .amount,
+.amira-card__price bdi {
+    color: #1a1a1a !important;
+}
+
+.amira-card__price del {
+    color: #aaaaaa !important;
+    font-size: 12px !important;
+    margin-right: 4px;
+}
+
+.amira-card__price ins {
+    color: #1a1a1a !important;
+    font-weight: 600 !important;
+    text-decoration: none !important;
+}
+
+/* ── Add to Cart button ─────────────────────────────────────── */
+/* Slide-up on hover: clipped by .amira-card overflow:hidden   */
+.amira-card__btn {
+    display: block !important;
+    width: 100% !important;
+    padding: 13px 0 !important;
+    background: #1a1a1a !important;
+    color: #ffffff !important;
+    font-family: 'Inter', sans-serif !important;
+    font-size: 11px !important;
+    font-weight: 500 !important;
+    letter-spacing: 0.18em !important;
+    text-transform: uppercase !important;
+    text-align: center !important;
+    text-decoration: none !important;
+    border: none !important;
+    cursor: pointer !important;
+    /* Slide-up: margin shift instead of transform to avoid layout gap */
+    margin-top: 0 !important;
+    transform: translateY(100%) !important;
+    transition: transform 0.32s ease !important;
+    position: relative !important;
+    bottom: auto !important;
+    box-sizing: border-box !important;
+}
+
+.amira-card:hover .amira-card__btn {
+    transform: translateY(0) !important;
+}
+
+.amira-card__btn:hover {
+    background: #333333 !important;
+    color: #ffffff !important;
+}
+
+/* ── WooCommerce utility resets ─────────────────────────────── */
+/* Hide WC's own add-to-cart button that gets injected alongside ours */
+.amira-card .added_to_cart {
+    display: none !important;
+}
+
+/* ── Sorting / result-count (WC injects these) ──────────────── */
+.amira-shop-wrapper .woocommerce-result-count {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: #888;
+    line-height: 1;
+    margin: 0 0 28px;
+    float: none;
+    display: block;
+}
+
+/* ── Sorting dropdown ───────────────────────────────────────── */
+.amira-shop-wrapper .woocommerce-ordering,
+.woocommerce-ordering {
+    float: right !important;
+    margin: 0 0 28px !important;
+}
+
+.amira-shop-wrapper .woocommerce-ordering select,
+.woocommerce-ordering select {
+    /* Remove all browser chrome */
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    appearance: none !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    outline: none !important;
+    /* Minimal border: bottom line only */
+    border: none !important;
+    border-bottom: 1px solid #1a1a1a !important;
+    /* Typography */
+    font-family: 'Inter', sans-serif !important;
+    font-size: 12px !important;
+    font-weight: 400 !important;
+    letter-spacing: 0.1em !important;
+    text-transform: uppercase !important;
+    color: #1a1a1a !important;
+    /* Layout */
+    background-color: transparent !important;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%231a1a1a'/%3E%3C/svg%3E") !important;
+    background-repeat: no-repeat !important;
+    background-position: right 0 center !important;
+    padding: 4px 22px 4px 0 !important;
+    cursor: pointer !important;
+}
+
+/* ── Pagination ─────────────────────────────────────────────── */
+/* Broad selectors catch WC output whether inside our wrapper or not */
+.woocommerce-pagination,
+.amira-shop-wrapper .woocommerce-pagination {
+    display: block !important;
+    clear: both !important;
+    width: 100% !important;
+    text-align: center !important;
+    margin-top: 60px !important;
+    margin-bottom: 40px !important;
+    padding: 0 !important;
+}
+
+.woocommerce-pagination ul,
+.amira-shop-wrapper .woocommerce-pagination ul {
+    display: inline-flex !important;
+    flex-wrap: wrap !important;
+    gap: 6px !important;
+    list-style: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    justify-content: center !important;
+}
+
+/* Every page number, arrow and dots */
+.woocommerce-pagination ul li a.page-numbers,
+.woocommerce-pagination ul li span.page-numbers,
+.amira-shop-wrapper .woocommerce-pagination ul li a,
+.amira-shop-wrapper .woocommerce-pagination ul li span {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 40px !important;
+    height: 40px !important;
+    font-family: 'Inter', sans-serif !important;
+    font-size: 13px !important;
+    font-weight: 400 !important;
+    color: #1a1a1a !important;
+    border: 1px solid #dddddd !important;
+    text-decoration: none !important;
+    transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease !important;
+    box-sizing: border-box !important;
+    background: #ffffff !important;
+}
+
+/* Hover state */
+.woocommerce-pagination ul li a.page-numbers:hover,
+.amira-shop-wrapper .woocommerce-pagination ul li a:hover {
+    background: #f5f5f5 !important;
+    border-color: #aaaaaa !important;
+    color: #1a1a1a !important;
+}
+
+/* Current / active page */
+.woocommerce-pagination ul li span.current,
+.amira-shop-wrapper .woocommerce-pagination ul li span.current {
+    background: #1a1a1a !important;
+    color: #ffffff !important;
+    border-color: #1a1a1a !important;
+    font-weight: 500 !important;
+}
+
+/* Dots (…) */
+.woocommerce-pagination ul li span.dots {
+    border-color: transparent !important;
+    background: transparent !important;
+    color: #aaaaaa !important;
+    width: 24px !important;
+}
+
+/* ================================================================
+   SHOP — RESPONSIVE BREAKPOINTS
+================================================================ */
+
+/* ── Tablet: 577px – 992px → 3 columns ───────────────────── */
+@media (min-width: 577px) and (max-width: 992px) {
+
+    .amira-shop-wrapper {
+        padding: 40px 24px 60px;
+    }
+
+    .woocommerce ul.products,
+    .woocommerce-page ul.products {
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 16px !important;
+    }
+
+    /* Card */
+    .amira-card {
+        border-radius: 6px;
+    }
+
+    /* Image */
+    .amira-card__image-link img {
+        padding: 14px !important;
+    }
+
+    /* Title */
+    .amira-card__title {
+        font-size: 15px !important;
+        padding: 10px 10px 3px !important;
+    }
+
+    /* Price */
+    .amira-card__price {
+        font-size: 13px !important;
+        margin: 0 0 10px !important;
+    }
+
+    /* Button — always visible on tablet (tap not hover) */
+    .amira-card__btn {
+        transform: translateY(0) !important;
+        font-size: 10px !important;
+        padding: 11px 0 !important;
+        letter-spacing: 0.12em !important;
+    }
+
+    /* Pagination */
+    .woocommerce-pagination ul li a.page-numbers,
+    .woocommerce-pagination ul li span.page-numbers,
+    .amira-shop-wrapper .woocommerce-pagination ul li a,
+    .amira-shop-wrapper .woocommerce-pagination ul li span {
+        width: 36px !important;
+        height: 36px !important;
+    }
+}
+
+/* ── Mobile: ≤576px → 2 columns ──────────────────────────── */
+@media (max-width: 576px) {
+
+    /* Wrapper — 16px side padding, no overflow */
+    .amira-shop-wrapper {
+        padding: 24px 0 40px;
+    }
+
+    .amira-shop-wrapper .woocommerce {
+        padding: 0 16px;
+        box-sizing: border-box;
+        overflow-x: hidden;
+    }
+
+    /* 2-column grid, 12px gap */
+    .woocommerce ul.products,
+    .woocommerce ul.products.columns-4,
+    .woocommerce ul.products.columns-3,
+    .woocommerce ul.products.columns-2,
+    .woocommerce-page ul.products,
+    .woocommerce-page ul.products.columns-4,
+    .woocommerce-page ul.products.columns-3,
+    .woocommerce-page ul.products.columns-2 {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 12px !important;
+    }
+
+    /* Cards equal height via grid stretch */
+    .woocommerce ul.products li.product,
+    .woocommerce-page ul.products li.product {
+        align-self: stretch !important;
+    }
+
+    /* Card shell */
+    .amira-card {
+        border-radius: 8px !important;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06) !important;
+        border: none !important;
+        overflow: hidden !important;
+    }
+
+    /* Image: square, contain, grey bg, compact padding */
+    .amira-card__image-link img {
+        aspect-ratio: 1 / 1 !important;
+        object-fit: contain !important;
+        background: #f5f5f5 !important;
+        padding: 10px !important;
+        width: 100% !important;
+        height: auto !important;
+    }
+
+    /* Info block */
+    .amira-card__info {
+        padding: 8px 8px 0 !important;
+    }
+
+    /* Product name — compact, no overflow */
+    .amira-card__title {
+        font-family: 'Cormorant Garamond', Georgia, serif !important;
+        font-size: 13px !important;
+        font-weight: 600 !important;
+        padding: 0 !important;
+        margin: 0 0 4px !important;
+        /* Clamp to one line */
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+    }
+
+    /* Price — Inter 12px, both prices on one line */
+    .amira-card__price {
+        font-family: 'Inter', sans-serif !important;
+        font-size: 12px !important;
+        margin: 0 0 8px !important;
+        padding: 0 !important;
+        white-space: nowrap !important;
+        /* prevent multi-line price */
+        overflow: hidden !important;
+    }
+
+    .amira-card__price del {
+        color: #aaaaaa !important;
+        font-size: 11px !important;
+    }
+
+    .amira-card__price ins {
+        font-weight: 700 !important;
+        font-size: 12px !important;
+        color: #1a1a1a !important;
+        text-decoration: none !important;
+    }
+
+    /* Add to Cart — always visible on mobile (no hover on touch) */
+    .amira-card__btn {
+        transform: translateY(0) !important;
+        /* always visible */
+        font-size: 10px !important;
+        letter-spacing: 0.1em !important;
+        padding: 10px 0 !important;
+        width: 100% !important;
+        display: block !important;
+    }
+
+    /* Stack result-count and sort dropdown vertically — no overlap */
+    .woocommerce-result-count,
+    .amira-shop-wrapper .woocommerce-result-count,
+    .woocommerce-ordering,
+    .amira-shop-wrapper .woocommerce-ordering {
+        float: none !important;
+        width: 100% !important;
+        text-align: center !important;
+        margin: 4px 0 !important;
+        display: block !important;
+    }
+
+    .woocommerce-result-count,
+    .amira-shop-wrapper .woocommerce-result-count {
+        font-size: 12px !important;
+        color: #999 !important;
+    }
+
+    .woocommerce-ordering select,
+    .amira-shop-wrapper .woocommerce-ordering select {
+        width: 100% !important;
+        text-align: center !important;
+    }
+
+    /* Pagination — 32×32 compact squares */
+    .woocommerce-pagination,
+    .amira-shop-wrapper .woocommerce-pagination {
+        margin-top: 40px !important;
+        margin-bottom: 24px !important;
+    }
+
+    .woocommerce-pagination ul li a.page-numbers,
+    .woocommerce-pagination ul li span.page-numbers,
+    .amira-shop-wrapper .woocommerce-pagination ul li a,
+    .amira-shop-wrapper .woocommerce-pagination ul li span {
+        width: 32px !important;
+        height: 32px !important;
+        font-size: 12px !important;
+    }
+
+    .woocommerce-pagination ul,
+    .amira-shop-wrapper .woocommerce-pagination ul {
+        gap: 4px !important;
+    }
+
+
+}
+
+/* end @media (max-width: 576px) */
+
+/* ── Skeleton Loading ── */
+.amira-skeleton {
+    background: #f5f5f5;
+    background: linear-gradient(90deg, #f5f5f5 25%, #ececec 50%, #f5f5f5 75%);
+    background-size: 200% 100%;
+    animation: amira-shimmer 1.5s infinite;
+    border-radius: 2px;
+}
+
+@keyframes amira-shimmer {
+    0% {
+        background-position: 200% 0;
+    }
+
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+.skeleton-img {
+    width: 100%;
+    height: 320px;
+    margin-bottom: 16px;
+}
+
+.skeleton-text {
+    width: 60%;
+    height: 16px;
+    margin-bottom: 8px;
+}
+
+.skeleton-text.short {
+    width: 40%;
+}
+
+/* ── Scroll Reveal ── */
+.amira-reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.amira-reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ── Back to Top ── */
+.amira-back-to-top {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    width: 44px;
+    height: 44px;
+    background-color: #1a1a1a;
+    color: #ffffff;
+    border-radius: 50%;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 100;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(20px);
+    transition: opacity 0.3s ease, transform 0.3s ease, background-color 0.3s ease;
+}
+
+.amira-back-to-top.show {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+}
+
+.amira-back-to-top:hover {
+    background-color: #c9a96e;
+}
+
+/* ── Quick View Modal ── */
+.amira-quick-view-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.amira-quick-view-modal.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.modal-overlay {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(26, 26, 26, 0.4);
+    backdrop-filter: blur(2px);
+}
+
+.modal-content {
+    background-color: #ffffff;
+    width: 90%;
+    max-width: 800px;
+    min-height: 450px;
+    position: relative;
+    z-index: 1;
+    border-radius: 4px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    transform: scale(0.95);
+    transition: transform 0.3s ease;
+    padding: 32px;
+}
+
+.amira-quick-view-modal.active .modal-content {
+    transform: scale(1);
+}
+
+.modal-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: transparent;
+    border: none;
+    font-size: 24px;
+    line-height: 1;
+    color: #888;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.modal-close:hover {
+    color: #1a1a1a;
+}
+
+/* ============================================================
+   AMIRA MY ACCOUNT — my-account.php
+   Minimal · Luxury · Elegant
+============================================================ */
+
+/* 1. Layout Fix */
+.woocommerce-account .woocommerce {
+    display: flex !important;
+    gap: 40px !important;
+    align-items: flex-start !important;
+    max-width: 1100px !important;
+    margin: 60px auto !important;
+    padding: 0 20px !important;
+}
+
+.woocommerce-MyAccount-navigation {
+    width: 260px !important;
+    min-width: 260px !important;
+    flex-shrink: 0 !important;
+}
+
+.woocommerce-MyAccount-content {
+    flex: 1 !important;
+    min-width: 0 !important;
+}
+
+/* 2. Page Title */
+.woocommerce-account h1.page-title,
+.woocommerce-account h2 {
+    font-family: 'Cormorant Garamond', serif !important;
+    font-size: 2rem !important;
+    color: #1a1a1a !important;
+    margin-bottom: 30px !important;
+    padding-bottom: 12px !important;
+    border-bottom: 2px solid #c9a96e !important;
+    display: inline-block !important;
+}
+
+/* 3. Sidebar Navigation */
+.woocommerce-MyAccount-navigation ul {
+    list-style: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    background: #f9f9f9 !important;
+    border-radius: 8px !important;
+    overflow: hidden !important;
+    border: 1px solid #eee !important;
+}
+
+.woocommerce-MyAccount-navigation ul li a {
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+    padding: 14px 20px !important;
+    font-family: 'Inter', sans-serif !important;
+    font-size: 12px !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.1em !important;
+    color: #666 !important;
+    border-bottom: 1px solid #eee !important;
+    transition: all 0.3s ease !important;
+    text-decoration: none !important;
+}
+
+.woocommerce-MyAccount-navigation ul li a:hover {
+    color: #1a1a1a !important;
+    background: white !important;
+    padding-left: 28px !important;
+}
+
+.woocommerce-MyAccount-navigation ul li.is-active a {
+    color: #c9a96e !important;
+    border-left: 3px solid #c9a96e !important;
+    background: white !important;
+    font-weight: 600 !important;
+}
+
+.woocommerce-MyAccount-navigation ul li:last-child a {
+    border-bottom: none !important;
+    color: #e74c3c !important;
+}
+
+.woocommerce-MyAccount-navigation ul li:last-child a:hover {
+    background: #fff5f5 !important;
+}
+
+/* 4. Content Area */
+.woocommerce-MyAccount-content {
+    background: white !important;
+    padding: 30px !important;
+    border-radius: 8px !important;
+    border: 1px solid #eee !important;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04) !important;
+}
+
+/* 5. Welcome Message & User Avatar */
+.woocommerce-MyAccount-content::before {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(to right, #c9a96e, #1a1a1a);
+    margin-bottom: 24px;
+    border-radius: 2px;
+}
+
+.woocommerce-MyAccount-content p:first-child {
+    font-family: 'Inter', sans-serif !important;
+    font-size: 14px !important;
+    color: #666 !important;
+    line-height: 1.8 !important;
+    padding-bottom: 20px !important;
+    border-bottom: 1px solid #f5f5f5 !important;
+    margin-bottom: 20px !important;
+}
+
+.woocommerce-MyAccount-content strong {
+    font-family: 'Cormorant Garamond', serif !important;
+    font-size: 18px !important;
+    color: #1a1a1a !important;
+}
+
+/* 6. Forms (Account Details, Address) */
+.woocommerce-MyAccount-content input[type='text'],
+.woocommerce-MyAccount-content input[type='email'],
+.woocommerce-MyAccount-content input[type='password'] {
+    border: none !important;
+    border-bottom: 1px solid #ddd !important;
+    border-radius: 0 !important;
+    padding: 10px 0 !important;
+    font-family: 'Inter', sans-serif !important;
+    font-size: 14px !important;
+    width: 100% !important;
+    background: transparent !important;
+    outline: none !important;
+    transition: border-color 0.3s ease !important;
+}
+
+.woocommerce-MyAccount-content input:focus {
+    border-bottom-color: #1a1a1a !important;
+}
+
+.woocommerce-MyAccount-content button[type='submit'],
+.woocommerce-MyAccount-content input[type='submit'],
+.woocommerce-MyAccount-content .button {
+    background: #1a1a1a !important;
+    color: white !important;
+    border: none !important;
+    padding: 14px 40px !important;
+    font-family: 'Inter', sans-serif !important;
+    font-size: 12px !important;
+    letter-spacing: 0.15em !important;
+    text-transform: uppercase !important;
+    cursor: pointer !important;
+    transition: background 0.3s ease !important;
+    border-radius: 0 !important;
+    margin-top: 15px !important;
+}
+
+.woocommerce-MyAccount-content button[type='submit']:hover,
+.woocommerce-MyAccount-content input[type='submit']:hover,
+.woocommerce-MyAccount-content .button:hover {
+    background: #333 !important;
+}
+
+/* 7. Orders Table */
+.woocommerce-MyAccount-content table.shop_table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+    margin-top: 16px !important;
+}
+
+.woocommerce-MyAccount-content table.shop_table th {
+    font-family: 'Inter', sans-serif !important;
+    font-size: 11px !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.1em !important;
+    color: #999 !important;
+    padding: 12px 16px !important;
+    border-bottom: 2px solid #eee !important;
+    text-align: left !important;
+}
+
+.woocommerce-MyAccount-content table.shop_table td {
+    padding: 16px !important;
+    border-bottom: 1px solid #f5f5f5 !important;
+    font-family: 'Inter', sans-serif !important;
+    font-size: 13px !important;
+    color: #444 !important;
+}
+
+.woocommerce-MyAccount-content table.shop_table tr:hover td {
+    background: #fafafa !important;
+}
+
+/* Edit Address / Account Detail Labels */
+.woocommerce-MyAccount-content label {
+    display: block !important;
+    text-transform: uppercase !important;
+    font-size: 11px !important;
+    letter-spacing: 0.1em !important;
+    color: #888 !important;
+    margin-bottom: 8px !important;
+    font-weight: 600 !important;
+    margin-top: 15px !important;
+}
+
+/* Order Status Badges Fix */
+.woocommerce-orders-table .order-status,
+mark.order-status {
+    display: inline-block !important;
+    padding: 6px 14px !important;
+    border-radius: 20px !important;
+    font-size: 11px !important;
+    font-weight: 600 !important;
+    text-transform: capitalize !important;
+    background: #f5f5f5 !important;
+    color: #666 !important;
+}
+
+.status-processing,
+.status-on-hold {
+    background: #fff8e1 !important;
+    color: #c9a96e !important;
+}
+
+.status-completed {
+    background: #e8f5e9 !important;
+    color: #2e7d32 !important;
+}
+
+.status-cancelled,
+.status-failed {
+    background: #ffebee !important;
+    color: #c62828 !important;
+}
+
+
+/* 8. Responsive */
+@media (max-width: 768px) {
+    .woocommerce-account .woocommerce {
+        flex-direction: column !important;
+    }
+
+    .woocommerce-MyAccount-navigation {
+        width: 100% !important;
+    }
+
+    .woocommerce-MyAccount-navigation ul {
+        display: flex !important;
+        overflow-x: auto !important;
+        border-radius: 0 !important;
+    }
+
+    .woocommerce-MyAccount-navigation ul li a {
+        white-space: nowrap !important;
+        border-bottom: none !important;
+        border-right: 1px solid #eee !important;
+    }
+
+    .woocommerce-MyAccount-content table.shop_table,
+    .woocommerce-orders-table {
+        display: block !important;
+        overflow-x: auto !important;
+    }
+}
+
+/* ============================================================
+   AMIRA CHECKOUT — checkout.php
+   Minimal · Luxury · Elegant
+============================================================ */
+
+/* 1. Page Layout */
+.woocommerce-checkout .woocommerce {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 60px 20px;
+}
+
+.woocommerce-checkout form.checkout {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+}
+
+.woocommerce-checkout #customer_details {
+    width: calc(60% - 20px);
+}
+
+.woocommerce-checkout #order_review_heading,
+.woocommerce-checkout #order_review {
+    width: calc(40% - 20px);
+}
+
+/* 2. Section Headings */
+.woocommerce-checkout h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    color: #1a1a1a;
+    font-weight: 500;
+    margin-bottom: 24px;
+    padding-bottom: 12px;
+    position: relative;
+}
+
+.woocommerce-checkout h3::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 40px;
+    height: 2px;
+    background: #c9a96e;
+}
+
+/* 3. Form Fields */
+.woocommerce-checkout .form-row {
+    margin-bottom: 20px;
+}
+
+.woocommerce-checkout label {
+    display: block;
+    text-transform: uppercase;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: #666;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.woocommerce-checkout .input-text,
+.woocommerce-checkout select {
+    width: 100%;
+    padding: 12px 0;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    color: #1a1a1a;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #ddd;
+    border-radius: 0;
+    outline: none;
+    transition: border-color 0.3s ease;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.woocommerce-checkout .input-text:focus,
+.woocommerce-checkout select:focus {
+    border-bottom-color: #1a1a1a;
+}
+
+.woocommerce-checkout .input-text::placeholder {
+    color: #999;
+}
+
+/* Select Box Arrows */
+.woocommerce-checkout .select2-container--default .select2-selection--single,
+.woocommerce-checkout .select2-selection {
+    border: none !important;
+    border-bottom: 1px solid #ddd !important;
+    border-radius: 0 !important;
+    padding: 12px 0 !important;
+    height: auto !important;
+    background-color: transparent !important;
+}
+
+.woocommerce-checkout .select2-container--default .select2-selection--single .select2-selection__arrow {
+    right: 0 !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+}
+
+/* 4. Checkboxes */
+.woocommerce-checkout input[type="checkbox"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    border: 1px solid #ddd;
+    border-radius: 2px;
+    outline: none;
+    cursor: pointer;
+    position: relative;
+    top: 3px;
+    margin-right: 10px;
+    transition: all 0.2s ease;
+}
+
+.woocommerce-checkout input[type="checkbox"]:checked {
+    background-color: #c9a96e;
+    border-color: #c9a96e;
+}
+
+.woocommerce-checkout input[type="checkbox"]:checked::after {
+    content: '';
+    position: absolute;
+    left: 4px;
+    top: 1px;
+    width: 4px;
+    height: 8px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+/* 5. Shipping Options */
+#shipping_method {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px 0;
+}
+
+#shipping_method li {
+    border: 1px solid #ddd;
+    padding: 16px 20px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+#shipping_method input[type="radio"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 1px solid #ddd;
+    border-radius: 50%;
+    margin-right: 12px;
+    position: relative;
+    cursor: pointer;
+}
+
+#shipping_method input[type="radio"]:checked {
+    border-color: #c9a96e;
+}
+
+#shipping_method input[type="radio"]:checked::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    background-color: #c9a96e;
+    border-radius: 50%;
+}
+
+#shipping_method label {
+    margin: 0;
+    color: #1a1a1a;
+    font-size: 13px;
+    text-transform: none;
+    letter-spacing: normal;
+    font-weight: 500;
+}
+
+#shipping_method .amount {
+    margin-left: auto;
+    color: #c9a96e;
+    font-weight: 600;
+}
+
+/* 6. Payment Options */
+.woocommerce-checkout-payment {
+    background: transparent !important;
+    border-radius: 0 !important;
+}
+
+.woocommerce-checkout-payment ul.payment_methods {
+    border: 1px solid #eee;
+    border-radius: 8px;
+    padding: 20px !important;
+    background: #fff;
+    margin: 0 0 20px 0 !important;
+}
+
+.woocommerce-checkout-payment ul.payment_methods li {
+    padding: 12px 0;
+    border-bottom: 1px solid #f5f5f5;
+}
+
+.woocommerce-checkout-payment ul.payment_methods li:last-child {
+    border-bottom: none;
+}
+
+.woocommerce-checkout-payment div.payment_box {
+    background-color: #fafafa !important;
+    border: 1px solid #eee !important;
+    color: #666 !important;
+    font-size: 13px !important;
+    padding: 16px !important;
+    border-radius: 4px !important;
+    margin-top: 12px !important;
+}
+
+.woocommerce-checkout-payment div.payment_box::before {
+    display: none !important;
+    /* Hide default triangle */
+}
+
+/* Payment Error Box */
+.woocommerce-error {
+    background: #fff5f5 !important;
+    border: none !important;
+    border-left: 3px solid #e74c3c !important;
+    color: #1a1a1a !important;
+    padding: 16px 20px !important;
+    list-style: none !important;
+    font-size: 13px !important;
+    margin-bottom: 24px !important;
+}
+
+/* 7. Order Summary (Right Side) */
+#order_review {
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    padding: 24px;
+    position: sticky;
+    top: 120px;
+}
+
+#order_review_heading {
+    display: none;
+    /* Hide default heading, we'll style the table header instead */
+}
+
+.checkout .shop_table {
+    border: none !important;
+    width: 100%;
+}
+
+.checkout .shop_table thead th {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    color: #1a1a1a;
+    border-bottom: 1px solid #eee !important;
+    padding: 0 0 16px 0 !important;
+    text-transform: none;
+    letter-spacing: normal;
+}
+
+.checkout .shop_table tbody td,
+.checkout .shop_table tfoot td,
+.checkout .shop_table tfoot th {
+    border-top: none !important;
+    border-bottom: 1px solid #f5f5f5 !important;
+}
+
+/* Product Row */
+.checkout .shop_table .cart_item {
+    display: flex;
+    align-items: center;
+    padding: 16px 0 !important;
+    border-bottom: 1px solid #f5f5f5 !important;
+}
+
+.checkout .shop_table .product-name {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    padding: 0 !important;
+}
+
+.checkout .shop_table .product-total {
+    padding: 0 !important;
+    text-align: right;
+}
+
+/* Product Image & Name (Assuming custom snippet or default filters bring image here) */
+.checkout .shop_table .product-name {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: #1a1a1a;
+    font-weight: 500;
+}
+
+/* Product Quantity */
+.checkout .shop_table .product-quantity {
+    display: inline-block;
+    background: #1a1a1a;
+    color: #fff;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+    font-size: 11px;
+    margin-left: 8px;
+    font-weight: normal;
+}
+
+/* Product Price */
+.checkout .shop_table .product-total .amount {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: #1a1a1a;
+    font-weight: 600;
+}
+
+/* Totals Area */
+.checkout .shop_table tfoot th {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: #666;
+    font-weight: normal;
+    padding: 16px 0 !important;
+}
+
+.checkout .shop_table tfoot td {
+    text-align: right;
+    padding: 16px 0 !important;
+}
+
+.checkout .shop_table tfoot .cart-subtotal .amount,
+.checkout .shop_table tfoot .shipping .amount {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: #666;
+}
+
+.checkout .shop_table tfoot .order-total {
+    border-top: 1px solid #eee !important;
+}
+
+.checkout .shop_table tfoot .order-total th,
+.checkout .shop_table tfoot .order-total td {
+    padding-top: 24px !important;
+}
+
+.checkout .shop_table tfoot .order-total th {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    color: #1a1a1a;
+    font-weight: 600;
+}
+
+.checkout .shop_table tfoot .order-total .amount {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    color: #1a1a1a;
+    font-weight: 600;
+}
+
+/* 8. Coupon Section */
+.woocommerce-form-coupon-toggle .showcoupon {
+    color: #1a1a1a;
+    text-transform: uppercase;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+    text-decoration: none;
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 24px;
+}
+
+.woocommerce-form-coupon-toggle .showcoupon::after {
+    content: '↓';
+    color: #c9a96e;
+    transition: transform 0.3s ease;
+}
+
+form.checkout_coupon {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 32px;
+    padding: 0 !important;
+    border: none !important;
+}
+
+form.checkout_coupon .input-text {
+    flex: 1;
+    border: none;
+    border-bottom: 1px solid #ddd;
+    border-radius: 0;
+    padding: 12px 0;
+    font-size: 14px;
+}
+
+form.checkout_coupon .button {
+    background: transparent;
+    color: #1a1a1a;
+    border: 1px solid #1a1a1a;
+    padding: 0 24px;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    border-radius: 0;
+}
+
+form.checkout_coupon .button:hover {
+    background: #1a1a1a;
+    color: #fff;
+}
+
+/* 9. Place Order Button */
+#place_order {
+    width: 100%;
+    background: #1a1a1a;
+    color: #fff;
+    padding: 18px;
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    border: none;
+    border-radius: 0;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    margin-top: 24px;
+    font-weight: 600;
+}
+
+#place_order:hover {
+    background: #333;
+}
+
+/* 10. Terms Text */
+.woocommerce-terms-and-conditions-wrapper {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: #999;
+    text-align: center;
+    margin-top: 24px;
+}
+
+.woocommerce-terms-and-conditions-wrapper a {
+    color: #c9a96e;
+    text-decoration: none;
+}
+
+.woocommerce-terms-and-conditions-wrapper a:hover {
+    text-decoration: underline;
+}
+
+/* 11. Responsive */
+@media (max-width: 991px) {
+    .woocommerce-checkout form.checkout {
+        flex-direction: column;
+    }
+
+    .woocommerce-checkout #customer_details,
+    .woocommerce-checkout #order_review_heading,
+    .woocommerce-checkout #order_review {
+        width: 100%;
+    }
+
+    /* Move order summary to top on mobile via Flex order */
+    .woocommerce-checkout form.checkout::before {
+        display: none;
+    }
+
+    #order_review {
+        order: -1;
+        position: static;
+    }
+
+    .woocommerce-checkout-payment {
+        order: 99;
+    }
+}
+
+/* ============================================================
+   AMIRA SINGLE PRODUCT — SVG SHARE FIX
+============================================================ */
+.asp-share {
+    display: flex !important;
+    align-items: center !important;
+    gap: 15px !important;
+    list-style: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.asp-share svg,
+.asp-share img {
+    width: 20px !important;
+    height: 20px !important;
+    max-width: 20px !important;
+    display: block !important;
+}
