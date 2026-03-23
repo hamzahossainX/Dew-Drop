@@ -225,7 +225,7 @@ $key = 'amira_login_fail_' . md5($ip . $identifier);
 ```bash
 # 1. Clone the repository into your WordPress themes directory
 cd /path/to/wordpress/wp-content/themes/
-git clone https://github.com/hamzahossainX/Wordpress-Custome-Theme.git antigravity
+git clone https://github.com/hamzahossainX/Wordpress-Custome-Theme.git antigravity](https://github.com/hamzahossainX/Dew-Drop.git
 
 # 2. Activate the theme
 #    Go to: WordPress Admin → Appearance → Themes → Activate "Antigravity"
