@@ -108,7 +108,7 @@ A complete, custom-built authentication flow — no plugins:
 ### System Architecture
 
 ```
-wp-content/themes/antigravity/
+
 │
 ├── style.css                    # 6500+ lines — complete design system
 ├── functions.php                # 974 lines — theme bootstrap + all backend logic
